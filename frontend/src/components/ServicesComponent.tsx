@@ -23,17 +23,6 @@ export default function ServicesComponent() {
     },
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-      },
-    },
-  };
-
   return (
     <section className="bg-offwhite text-pakistanGreen py-16 lg:py-24">
       <MotionDiv

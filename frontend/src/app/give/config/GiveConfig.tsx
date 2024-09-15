@@ -1,4 +1,4 @@
-import { Heart, DollarSign, CreditCard, Smartphone, Gift } from "lucide-react";
+import { CreditCard, Smartphone, Gift } from "lucide-react";
 
 export const giveConfig = {
   hero: {
@@ -57,5 +57,19 @@ export const giveConfig = {
   digitalPayments: {
     title: "Digital Payment Options",
     options: ["Cash App", "Zelle", "PayPal"],
+    qrCodes: [
+      {
+        app: "Cash App",
+        qrCode: "/assets/dummyQR.png",
+      },
+      {
+        app: "Zelle",
+        qrCode: "/assets/dummyQR.png",
+      },
+      {
+        app: "PayPal",
+        qrCode: "/assets/dummyQR.png",
+      },
+    ],
   },
 };

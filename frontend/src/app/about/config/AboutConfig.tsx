@@ -1,11 +1,4 @@
-import {
-  LucideIcon,
-  Rocket,
-  Shield,
-  Heart,
-  BookOpen,
-  Cross,
-} from "lucide-react";
+import { LucideIcon, Shield, Heart, BookOpen, Cross } from "lucide-react";
 
 interface TeamMember {
   name: string;

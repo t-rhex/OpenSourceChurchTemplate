@@ -2,15 +2,9 @@ import {
   User,
   Users,
   MapPin,
-  Heart,
   Youtube,
   Instagram,
   Facebook,
-  HandHelping,
-  Church,
-  GraduationCap,
-  HeartHandshake,
-  Image,
 } from "lucide-react";
 
 export const experienceConfig = {
