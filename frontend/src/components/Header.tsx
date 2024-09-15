@@ -16,7 +16,7 @@ export default function Header() {
   >({});
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 1000);
+    const timer = setTimeout(() => setIsLoading(false), 100);
     return () => clearTimeout(timer);
   }, []);
 
@@ -26,6 +26,11 @@ export default function Header() {
 
   const closeMenu = () => {
     setIsMenuOpen(false);
+    setMobileDropdowns({});
+  };
+
+  const closeDropdowns = () => {
+    setOpenDropdown(null);
     setMobileDropdowns({});
   };
 
@@ -50,10 +55,9 @@ export default function Header() {
                 className="h-8 w-auto sm:h-10 md:h-12 lg:h-14"
                 src={headerConfig.logo.src}
                 alt={headerConfig.logo.alt}
+                width={100}
+                height={100}
               />
-              <span className="mt-1 text-xs sm:text-sm md:text-base text-gray-600">
-                {headerConfig.logo.text}
-              </span>
             </Link>
           </div>
           <nav className="hidden md:flex space-x-2 lg:space-x-4 xl:space-x-8">
@@ -83,7 +87,8 @@ export default function Header() {
                               key={dropdownItem.name}
                               href={dropdownItem.href}
                               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                              role="menuitem">
+                              role="menuitem"
+                              onClick={closeDropdowns}>
                               {dropdownItem.name}
                             </Link>
                           ))}

@@ -37,8 +37,10 @@ export default function ImageCarousel() {
       className="relative w-full overflow-hidden bg-pakistanGreen text-cornsilk"
       style={{ height: "600px" }}>
       <div className="flex items-center justify-center h-full">
-        {[0, 1, 2].map((offset) => (
-          <div key={offset} className="w-1/3 h-full relative">
+        {[0, 1].map((offset) => (
+          <div
+            key={offset}
+            className="w-full md:w-1/2 h-full relative hidden md:block">
             <AnimatePresence initial={false}>
               <motion.div
                 key={(currentIndex + offset) % images.length}
@@ -57,6 +59,24 @@ export default function ImageCarousel() {
             </AnimatePresence>
           </div>
         ))}
+        <div className="w-full h-full relative md:hidden">
+          <AnimatePresence initial={false}>
+            <motion.div
+              key={currentIndex}
+              className="absolute inset-0"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}>
+              <Image
+                src={images[currentIndex]}
+                alt={`Slide ${currentIndex + 1}`}
+                fill
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+          </AnimatePresence>
+        </div>
       </div>
 
       <div className="absolute inset-0 flex items-center justify-between p-4">
@@ -80,15 +100,13 @@ export default function ImageCarousel() {
       </div>
 
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-        {Array.from({ length: images.length / 3 }).map((_, index) => (
+        {Array.from({ length: images.length }).map((_, index) => (
           <button
             key={index}
             className={`w-2 h-2 rounded-full ${
-              Math.floor(currentIndex / 3) === index
-                ? "bg-earthYellow"
-                : "bg-cornsilk/50"
+              currentIndex === index ? "bg-earthYellow" : "bg-cornsilk/50"
             }`}
-            onClick={() => setCurrentIndex(index * 3)}>
+            onClick={() => setCurrentIndex(index)}>
             <span className="sr-only">Go to slide {index + 1}</span>
           </button>
         ))}

@@ -21,7 +21,7 @@ export default function ContactModal() {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button variant="default" size="lg">
+        <Button className="bg-darkMossGreen text-white hover:bg-earthYellow">
           Contact Us
         </Button>
       </DialogTrigger>

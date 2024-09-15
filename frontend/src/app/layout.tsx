@@ -7,7 +7,10 @@ import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Revival",
+  title: {
+    template: "%s | Revival",
+    default: "Home Revival",
+  },
   description: "Revival project",
   icons: {
     icon: "/assets/favicon_io/favicon.ico",

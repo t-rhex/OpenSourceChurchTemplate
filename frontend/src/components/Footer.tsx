@@ -10,7 +10,7 @@ export default function Footer() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1500);
+    }, 100);
 
     return () => clearTimeout(timer);
   }, []);

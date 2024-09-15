@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
-import { aboutConfig } from "../config/AboutConfig";
+import { aboutConfig } from "../../config/AboutConfig";
 import WhyJesusModal from "@/components/Modal/whyjesus";
 
 export default function AboutUs() {

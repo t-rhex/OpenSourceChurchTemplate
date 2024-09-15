@@ -2,10 +2,7 @@
 
 import { motion } from "framer-motion";
 import { welcomeConfig } from "../configs/WelcomeConfig";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { ChevronRight } from "lucide-react";
-import Link from "next/link";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function Welcome() {
   const containerVariants = {
@@ -36,37 +33,16 @@ export default function Welcome() {
           <div className="w-24 h-1 bg-earthYellow mx-auto mb-8"></div>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div>
           <motion.div className="lg:col-span-2" variants={itemVariants}>
             <Card className="h-full border-none shadow-none bg-transparent">
-              <CardContent className="space-y-4">
-                <p className="text-darkMossGreen text-2xl leading-relaxed">
+              <CardContent className="space-y-4 text-center">
+                <p className="text-darkMossGreen text-xl leading-relaxed">
                   {welcomeConfig.message}
                 </p>
                 <p className="text-pakistanGreen text-md font-semibold italic">
                   {welcomeConfig.signature}
                 </p>
-              </CardContent>
-            </Card>
-          </motion.div>
-          <motion.div variants={containerVariants}>
-            <Card className="border-none bg-transparent">
-              <CardHeader>
-                <CardTitle className="text-3xl ">Get Involved</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {welcomeConfig.involvementAreas.map((area, index) => (
-                  <motion.div key={index} variants={itemVariants}>
-                    <Link href={area.href} passHref>
-                      <Button
-                        variant="outline"
-                        className="w-full text-2xl justify-between text-left text-pakistanGreen hover:text-cornsilk hover:bg-pakistanGreen transition-all duration-300 bg-transparent border-none">
-                        {area.name}
-                        <ChevronRight className="h-4 w-4" />
-                      </Button>
-                    </Link>
-                  </motion.div>
-                ))}
               </CardContent>
             </Card>
           </motion.div>

@@ -2,7 +2,20 @@
 const nextConfig = {
     reactStrictMode: true,
     images: {
-        domains: ['picsum.photos', 'unsplash.com', 'images.pexels.com'],
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'picsum.photos',
+            },
+            {
+                protocol: 'https',
+                hostname: 'unsplash.com',
+            },
+            {
+                protocol: 'https',
+                hostname: 'images.pexels.com',
+            },
+        ],
     },
     // ... other configurations
 };
