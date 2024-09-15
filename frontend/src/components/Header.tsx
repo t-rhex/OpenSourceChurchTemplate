@@ -5,7 +5,8 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import { headerConfig } from "../configs/HeaderConfig";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-
+import React from "react";
+import Image from "next/image";
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -45,7 +46,7 @@ export default function Header() {
         <div className="flex items-center justify-between flex-wrap">
           <div className="flex-shrink-0">
             <Link href="/" className="flex flex-col items-center">
-              <img
+              <Image
                 className="h-8 w-auto sm:h-10 md:h-12 lg:h-14"
                 src={headerConfig.logo.src}
                 alt={headerConfig.logo.alt}
@@ -106,7 +107,13 @@ export default function Header() {
               .filter((button) => button.enabled)
               .map((button, index) =>
                 button.component ? (
-                  <button.component key={index} />
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}>
+                    {React.createElement(button.component, { closeMenu })}
+                  </motion.div>
                 ) : (
                   <Link
                     key={button.name}
@@ -154,7 +161,7 @@ export default function Header() {
                       initial={{ opacity: 0, y: -20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.1 }}>
-                      <button.component onClick={closeMenu} />
+                      {React.createElement(button.component, { closeMenu })}
                     </motion.div>
                   ) : (
                     <motion.div

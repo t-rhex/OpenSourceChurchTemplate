@@ -1,4 +1,4 @@
-import { LogIn, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import ConnectionForm from "../components/ConnectionForm";
 import ContactModal from "../components/ui/ContactModal";
 

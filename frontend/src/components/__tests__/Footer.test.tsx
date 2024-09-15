@@ -2,7 +2,6 @@ import React from "react";
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import Footer from "../Footer";
-import { footerConfig } from "@configs/FooterConfig";
 
 // Mock the FooterConfig
 jest.mock("@configs/FooterConfig", () => ({

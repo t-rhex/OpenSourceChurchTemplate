@@ -43,7 +43,7 @@ export default function Experience() {
   };
 
   const enabledSections = Object.entries(sections).filter(
-    ([_, section]) => section.enabled
+    ([, section]) => section.enabled
   );
   const gridClass = `grid grid-cols-1 md:grid-cols-${Math.min(
     enabledSections.length,

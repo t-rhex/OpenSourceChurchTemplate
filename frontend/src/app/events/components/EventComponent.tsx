@@ -18,7 +18,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Calendar, Clock, MapPin, Users, Info } from "lucide-react";
+import { Clock, MapPin, Users, Info } from "lucide-react";
 import Image from "next/image";
 import { Calendar as CalendarComponent } from "@/components/ui/calendar";
 import { format, isPast, isFuture, compareDesc } from "date-fns";

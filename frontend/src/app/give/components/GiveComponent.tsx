@@ -1,7 +1,5 @@
 "use client";
 
-<script src="https://js.churchcenter.com/modal/v1"></script>;
-
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -67,7 +65,7 @@ export default function GiveComponent() {
                   {giveConfig.whyWeGive.content}
                 </p>
                 <blockquote className="border-l-4 border-earthYellow pl-4 italic text-darkMossGreen">
-                  "{giveConfig.whyWeGive.quote.text}"
+                  &ldquo;{giveConfig.whyWeGive.quote.text}&rdquo;
                   <footer className="text-right">
                     - {giveConfig.whyWeGive.quote.source}
                   </footer>
@@ -86,7 +84,7 @@ export default function GiveComponent() {
                 <div className="space-y-4">
                   {giveConfig.testimonials.map((testimonial, index) => (
                     <p key={index} className="text-darkMossGreen italic">
-                      "{testimonial.text}" - {testimonial.author}
+                      &ldquo;{testimonial.text}&rdquo; - {testimonial.author}
                     </p>
                   ))}
                 </div>
@@ -195,7 +193,11 @@ export default function GiveComponent() {
                       </h3>
                       <div className="bg-white p-2 rounded-lg shadow-md inline-block">
                         <Image
-                          src={`/placeholder.svg?height=100&width=100&text=${app}`}
+                          src={
+                            giveConfig.digitalPayments.qrCodes.find(
+                              (qr) => qr.app === app
+                            )?.qrCode || "/assets/dummyQR.png"
+                          }
                           alt={`${app} QR Code`}
                           width={100}
                           height={100}

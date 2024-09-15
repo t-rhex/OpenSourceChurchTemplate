@@ -20,9 +20,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { ExternalLink, Heart, Mail } from "lucide-react";
+import { ExternalLink, Heart } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
-
+import Image from "next/image";
 const ministries = [
   {
     title: "Stop Human Trafficking",
@@ -117,10 +117,11 @@ export default function MinistriesPage() {
               transition={{ duration: 0.5, delay: index * 0.1 }}>
               <Card className="h-full flex flex-col">
                 <CardHeader className="p-0">
-                  <img
+                  <Image
                     src={ministry.image}
                     alt={ministry.title}
-                    className="w-full h-48 object-cover rounded-t-lg"
+                    width={100}
+                    height={100}
                   />
                 </CardHeader>
                 <CardContent className="flex-grow">

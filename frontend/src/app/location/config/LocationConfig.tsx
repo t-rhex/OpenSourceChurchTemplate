@@ -1,5 +1,3 @@
-import { MapPin, Clock, Car, Bus, Train } from "lucide-react";
-
 export const locationConfig = {
   title: "Visit Us",
   location: {

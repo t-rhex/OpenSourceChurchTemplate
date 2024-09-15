@@ -9,10 +9,7 @@ interface FeatureCardProps {
   animationDelay: string;
 }
 
-export default function FeatureCard({
-  feature,
-  animationDelay,
-}: FeatureCardProps) {
+export default function FeatureCard({ feature }: FeatureCardProps) {
   return (
     <motion.div
       className="relative rounded-lg shadow-lg overflow-hidden h-full"
