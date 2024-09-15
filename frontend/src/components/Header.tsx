@@ -1,151 +1,260 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Menu, X, ChevronDown } from "lucide-react";
+import { headerConfig } from "../configs/HeaderConfig";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
-import { Menu, X, Search } from "lucide-react";
-
-const headerConfig = {
-  siteName: "Revival",
-  logoSrc: "/placeholder.svg?height=32&width=100",
-  menuItems: [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { name: "Services", path: "/services" },
-    { name: "Events", path: "/events" },
-    { name: "Contact", path: "/contact" },
-  ],
-};
 
 export default function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [mobileDropdowns, setMobileDropdowns] = useState<
+    Record<string, boolean>
+  >({});
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <HeaderSkeleton />;
+  }
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+    setMobileDropdowns({});
+  };
 
   return (
-    <header className="bg-white border-b border-gray-200">
-      <nav
-        className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
-        aria-label="Global">
-        <div className="flex lg:flex-1">
-          <div className="hidden lg:flex lg:gap-x-12">
-            {headerConfig.menuItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.path}
-                className="text-sm font-semibold leading-6 text-gray-900 hover:text-gray-600">
-                {item.name}
-              </Link>
-            ))}
+    <motion.header
+      initial={{ opacity: 0, y: -50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="bg-white shadow-sm">
+      {headerConfig.subheader.enabled && (
+        <div className="bg-pakistanGreen text-white text-center py-2">
+          <p className="text-xs sm:text-sm md:text-base">
+            {headerConfig.subheader.name}
+          </p>
+        </div>
+      )}
+      <div className="container mx-auto px-4 py-2 sm:py-4">
+        <div className="flex items-center justify-between flex-wrap">
+          <div className="flex-shrink-0">
+            <Link href="/" className="flex flex-col items-center">
+              <img
+                className="h-8 w-auto sm:h-10 md:h-12 lg:h-14"
+                src={headerConfig.logo.src}
+                alt={headerConfig.logo.alt}
+              />
+              <span className="mt-1 text-xs sm:text-sm md:text-base text-gray-600">
+                {headerConfig.logo.text}
+              </span>
+            </Link>
           </div>
-          <div className="flex lg:hidden">
+          <nav className="hidden md:flex space-x-2 lg:space-x-4 xl:space-x-8">
+            {headerConfig.navItems.map((item) => (
+              <div key={item.name} className="relative group">
+                {item.dropdown ? (
+                  <>
+                    <button
+                      className="flex items-center space-x-1 text-darkMossGreen hover:text-earthYellow"
+                      onClick={() =>
+                        setOpenDropdown(
+                          openDropdown === item.name ? null : item.name
+                        )
+                      }>
+                      <span>{item.name}</span>
+                      <ChevronDown className="w-4 h-4" />
+                    </button>
+                    {openDropdown === item.name && (
+                      <div className="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                        <div
+                          className="py-1"
+                          role="menu"
+                          aria-orientation="vertical"
+                          aria-labelledby="options-menu">
+                          {item.dropdown.map((dropdownItem) => (
+                            <Link
+                              key={dropdownItem.name}
+                              href={dropdownItem.href}
+                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                              role="menuitem">
+                              {dropdownItem.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <Link
+                    href={item.href}
+                    className="text-darkMossGreen hover:text-earthYellow">
+                    {item.name}
+                  </Link>
+                )}
+              </div>
+            ))}
+          </nav>
+
+          <div className="hidden md:flex items-center space-x-2 lg:space-x-4">
+            {headerConfig.buttons
+              .filter((button) => button.enabled)
+              .map((button, index) =>
+                button.component ? (
+                  <button.component key={index} />
+                ) : (
+                  <Link
+                    key={button.name}
+                    href={button.href}
+                    className={`text-xs sm:text-sm md:text-sm lg:text-base font-medium transition-colors duration-200 ${
+                      button.variant === "primary"
+                        ? "bg-darkMossGreen text-white hover:bg-earthYellow px-2 py-1 sm:px-3 sm:py-2 lg:px-4 lg:py-2 rounded-md"
+                        : "text-darkMossGreen hover:text-gray-900"
+                    }`}>
+                    {button.name}
+                  </Link>
+                )
+              )}
+          </div>
+          <div className="md:hidden flex items-center">
             <button
-              type="button"
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-              onClick={() => setMobileMenuOpen(true)}>
-              <span className="sr-only">Open main menu</span>
-              <Menu className="h-6 w-6" aria-hidden="true" />
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="text-gray-500 hover:text-gray-900 p-2"
+              aria-label="Toggle menu">
+              {isMenuOpen ? (
+                <X className="h-5 w-5 sm:h-6 sm:w-6" />
+              ) : (
+                <Menu className="h-5 w-5 sm:h-6 sm:w-6" />
+              )}
             </button>
           </div>
         </div>
-        <div className="lg:flex lg:flex-1 lg:justify-center">
-          <Link href="/" className="-m-1.5 p-1.5">
-            <span className="sr-only">{headerConfig.siteName}</span>
-            <Image
-              className="h-8 w-auto"
-              src={headerConfig.logoSrc}
-              alt="Church Logo"
-              width={100}
-              height={32}
-            />
-          </Link>
-        </div>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-4">
-          <form className="relative">
-            <Search
-              className="pointer-events-none absolute left-4 top-3.5 h-5 w-5 text-gray-400"
-              aria-hidden="true"
-            />
-            <input
-              type="text"
-              className="h-12 w-full rounded-full border border-gray-300 bg-white pl-11 pr-4 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="Search..."
-            />
-          </form>
-          <button className="rounded-full bg-gray-100 p-2">
-            <Image
-              className="h-8 w-8 rounded-full"
-              src="/placeholder.svg?height=32&width=32"
-              alt="User"
-              width={32}
-              height={32}
-            />
-          </button>
-        </div>
-      </nav>
-      {mobileMenuOpen && (
-        <div className="lg:hidden" role="dialog" aria-modal="true">
-          <div className="fixed inset-0 z-50"></div>
-          <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-            <div className="flex items-center justify-between">
-              <Link href="/" className="-m-1.5 p-1.5">
-                <span className="sr-only">{headerConfig.siteName}</span>
-                <Image
-                  className="h-8 w-auto"
-                  src={headerConfig.logoSrc}
-                  alt="Church Logo"
-                  width={100}
-                  height={32}
-                />
-              </Link>
-              <button
-                type="button"
-                className="-m-2.5 rounded-md p-2.5 text-gray-700"
-                onClick={() => setMobileMenuOpen(false)}>
-                <span className="sr-only">Close menu</span>
-                <X className="h-6 w-6" aria-hidden="true" />
-              </button>
-            </div>
-            <div className="mt-6 flow-root">
-              <div className="-my-6 divide-y divide-gray-500/10">
-                <div className="space-y-2 py-6">
-                  {headerConfig.menuItems.map((item) => (
+      </div>
+
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden container mx-auto px-4 py-2 sm:py-4 overflow-hidden">
+            <div className="flex flex-col space-y-2 sm:space-y-4">
+              {headerConfig.buttons
+                .filter((button) => button.enabled)
+                .map((button, index) =>
+                  button.component ? (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 }}>
+                      <button.component onClick={closeMenu} />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 }}>
+                      <Link
+                        href={button.href}
+                        className={`block text-center text-sm sm:text-base font-medium transition-colors duration-200 ${
+                          button.variant === "primary"
+                            ? "bg-darkMossGreen text-white hover:bg-earthYellow px-3 py-2 rounded-md"
+                            : "text-darkMossGreen hover:text-gray-900 hover:bg-gray-50 px-3 py-2 rounded-md"
+                        }`}
+                        onClick={closeMenu}>
+                        {button.name}
+                      </Link>
+                    </motion.div>
+                  )
+                )}
+              {headerConfig.navItems.map((item, index) => (
+                <motion.div
+                  key={item.name}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    delay: (index + headerConfig.buttons.length) * 0.1,
+                  }}>
+                  {item.dropdown ? (
+                    <div>
+                      <button
+                        onClick={() =>
+                          setMobileDropdowns((prev) => ({
+                            ...prev,
+                            [item.name]: !prev[item.name],
+                          }))
+                        }
+                        className="flex items-center justify-between w-full text-gray-500 hover:text-gray-900 hover:bg-gray-50 px-3 py-2 rounded-md text-sm sm:text-base font-medium">
+                        {item.name}
+                        <ChevronDown
+                          className={`w-4 h-4 transition-transform ${
+                            mobileDropdowns[item.name] ? "rotate-180" : ""
+                          }`}
+                        />
+                      </button>
+                      {mobileDropdowns[item.name] && (
+                        <div className="pl-4 mt-2 space-y-2">
+                          {item.dropdown.map((dropdownItem) => (
+                            <Link
+                              key={dropdownItem.name}
+                              href={dropdownItem.href}
+                              className="block text-gray-500 hover:text-gray-900 hover:bg-gray-50 px-3 py-2 rounded-md text-sm"
+                              onClick={closeMenu}>
+                              {dropdownItem.name}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ) : (
                     <Link
-                      key={item.name}
-                      href={item.path}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                      href={item.href}
+                      className="block text-gray-500 hover:text-gray-900 hover:bg-gray-50 px-3 py-2 rounded-md text-sm sm:text-base font-medium"
+                      onClick={closeMenu}>
                       {item.name}
                     </Link>
-                  ))}
-                </div>
-                <div className="py-6">
-                  <form className="relative mb-4">
-                    <Search
-                      className="pointer-events-none absolute left-4 top-3.5 h-5 w-5 text-gray-400"
-                      aria-hidden="true"
-                    />
-                    <input
-                      type="text"
-                      className="h-12 w-full rounded-full border border-gray-300 bg-white pl-11 pr-4 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="Search..."
-                    />
-                  </form>
-                  <button className="flex items-center gap-2">
-                    <Image
-                      className="h-8 w-8 rounded-full"
-                      src="/placeholder.svg?height=32&width=32"
-                      alt="User"
-                      width={32}
-                      height={32}
-                    />
-                    <span className="text-sm font-semibold text-gray-900">
-                      Your Account
-                    </span>
-                  </button>
-                </div>
-              </div>
+                  )}
+                </motion.div>
+              ))}
             </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
+  );
+}
+
+function HeaderSkeleton() {
+  return (
+    <div className="bg-white shadow-sm animate-pulse">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-12 sm:h-16">
+          <div className="w-24 sm:w-32 h-6 sm:h-8 bg-gray-200 rounded"></div>
+          <div className="hidden md:flex space-x-4 lg:space-x-8">
+            {[1, 2, 3].map((i) => (
+              <div
+                key={i}
+                className="w-16 sm:w-20 h-4 bg-gray-200 rounded"></div>
+            ))}
           </div>
+          <div className="hidden sm:flex items-center space-x-2 lg:space-x-4">
+            {[1, 2].map((i) => (
+              <div
+                key={i}
+                className="w-20 sm:w-24 h-6 sm:h-8 bg-gray-200 rounded"></div>
+            ))}
+          </div>
+          <div className="md:hidden w-6 h-6 bg-gray-200 rounded"></div>
         </div>
-      )}
-    </header>
+      </div>
+    </div>
   );
 }

@@ -55,6 +55,9 @@ const config: Config = {
         cornsilk: "#FEFAE0",
         earthYellow: "#DDA15E",
         tigersEye: "#BC6C25",
+        lightBeige: "#F5F5DC",
+        offWhite: "#FAFAFA",
+        lightGreen: "#F0F4F0",
       },
       borderRadius: {
         lg: "var(--radius)",

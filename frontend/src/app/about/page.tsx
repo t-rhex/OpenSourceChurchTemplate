@@ -1,7 +1,8 @@
 import React from "react";
+import AboutUs from "./components/Aboutus";
 
 const AboutPage = () => {
-  return <div>AboutPage</div>;
+  return <AboutUs />;
 };
 
 export default AboutPage;
