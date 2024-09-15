@@ -90,4 +90,18 @@ describe("Footer", () => {
       expect(socialLink).toHaveClass("hover:text-tigersEye");
     });
   });
+
+  it("has consistent padding and margin", async () => {
+    render(<Footer />);
+    await waitFor(() => {
+      const footer = screen.getByRole("contentinfo");
+      expect(footer).toHaveClass("py-16");
+
+      const container = footer.firstChild;
+      expect(container).toHaveClass("container");
+      expect(container).toHaveClass("mx-auto");
+      expect(container).toHaveClass("px-4");
+      expect(container).toHaveClass("space-y-16");
+    });
+  });
 });
