@@ -70,9 +70,7 @@ export default function WhyJesusModal() {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button
-          variant="default"
-          className="bg-pakistanGreen text-white text-lg">
+        <Button className="bg-darkMossGreen text-white text-lg">
           Why Jesus?
         </Button>
       </DialogTrigger>
@@ -117,7 +115,6 @@ export default function WhyJesusModal() {
           )}
         </AnimatePresence>
         <Button
-          variant="ghost"
           className="absolute right-4 top-4"
           onClick={() => setIsOpen(false)}>
           <X className="h-4 w-4" />

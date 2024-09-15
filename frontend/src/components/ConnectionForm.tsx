@@ -17,7 +17,7 @@ export default function EmbeddedFormModal() {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button variant="default" size="lg">
+        <Button className="bg-darkMossGreen text-white hover:bg-earthYellow">
           Connection Form
         </Button>
       </DialogTrigger>

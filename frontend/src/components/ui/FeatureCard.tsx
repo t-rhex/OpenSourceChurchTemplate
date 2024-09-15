@@ -19,9 +19,8 @@ export default function FeatureCard({ feature }: FeatureCardProps) {
       <Image
         src={feature.backgroundImage}
         alt=""
-        layout="fill"
-        objectFit="cover"
-        className="absolute inset-0 z-0"
+        fill
+        className="object-cover absolute inset-0 z-0"
         quality={100}
       />
       <div className="absolute inset-0 bg-black bg-opacity-50 z-10"></div>

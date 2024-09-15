@@ -65,7 +65,7 @@ export const heroConfig = {
         "Spreading love, hope, and compassion through faith and community service.",
       button: {
         text: "Learn More",
-        href: "/mission",
+        href: "/about/about-us",
         className:
           "mt-4 inline-block bg-darkMossGreen hover:bg-earthYellow text-white font-semibold py-2 px-4 rounded transition duration-300",
       },

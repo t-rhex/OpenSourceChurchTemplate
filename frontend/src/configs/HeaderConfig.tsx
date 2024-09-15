@@ -6,7 +6,7 @@ export const headerConfig = {
   logo: {
     src: "/assets/rcmn-logo-zip-file/png/rcmn-high-resolution-logo-black-transparent.png",
     alt: "Revival Center Logo",
-    text: "Sunday Service: 1pm CST",
+    //text: "Sunday Service: 1pm CST",
   },
   //   need to add dropdown menus.
   navItems: [
@@ -15,7 +15,10 @@ export const headerConfig = {
     {
       name: "About",
       href: "/about",
-      dropdown: [{ name: "Ministries", href: "/about/ministries" }],
+      dropdown: [
+        { name: "About Us", href: "/about/aboutus" },
+        { name: "Ministries", href: "/about/ministries" },
+      ],
     },
     { name: "Get Involved", href: "/getinvolved" },
     { name: "Give", href: "/give" },
@@ -24,7 +27,7 @@ export const headerConfig = {
       href: "/resources",
       dropdown: [
         { name: "Devotionals", href: "/resources/devotional" },
-        { name: "Forms", href: "/resources" },
+        { name: "Church Resources", href: "/resources/church-resources" },
       ],
     },
   ],
