@@ -5,13 +5,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getInvolvedConfig } from "../config/GetInvolvedConfig";
-import { useRouter } from "next/navigation";
 
 export default function GetInvolvedComponent() {
-  const router = useRouter();
-  const handleClick = (link:string) => {
-    router.push(link);
-  }
   return (
     <div className="bg-gradient-to-b from-white to-green-50 min-h-screen">
       <motion.div
@@ -63,7 +58,7 @@ export default function GetInvolvedComponent() {
                       </li>
                     ))}
                   </ul>
-                  <Button onClick={()=> handleClick(opportunity.link)} className="w-full mt-4 bg-darkMossGreen text-white hover:bg-earthYellow">
+                  <Button className="w-full mt-4 bg-darkMossGreen text-white hover:bg-earthYellow">
                     Learn More
                   </Button>
                 </CardContent>
