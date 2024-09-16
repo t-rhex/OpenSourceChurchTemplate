@@ -7,12 +7,12 @@ Everyone is invited to collaborate.
 ## How To Contribute
 
 ### Fork the Repository 
-- To fork the repository so you have a copy of the codebase, you will click on the **"Fork"** button from the repository main page
-- Clicking on the Fork button takes you to the **"Create New Fork"** page where you select the owner (your personal github account) and click on the Create fork button.
+- To fork the repository, click on the **"Fork"** button from the repository main page
+- Click **"Create New Fork"** page where you select the owner (your personal github account)
 - Connect your local to the original “upstream” repository by adding it as a remote.
-- Create a Branch for your own edits
+- Create a branch for your own edits
 
-**General Note:** Pull in changes from “upstream” often so that you stay up to date so that when you submit your pull request, merge conflicts will be less likely. 
+**General Note:** Pull in changes from “upstream” often so that you stay up to date and have less merge conflicts
 
 Refer to the documentation below for issues:
 - [Working with Forks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks)
