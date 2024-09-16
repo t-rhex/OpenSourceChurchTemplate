@@ -1,4 +1,4 @@
-# Open Source Church WebApp Template.
+# Open Source Church WebApp Template
 
 A WebApp template where churches can connect with current and prospective community members. 
 
