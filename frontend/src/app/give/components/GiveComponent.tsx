@@ -10,9 +10,14 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Heart, DollarSign, Gift } from "lucide-react";
 import Image from "next/image";
 import { giveConfig } from "../config/GiveConfig";
+import { useRouter } from "next/navigation";
 
 export default function GiveComponent() {
   const [amount, setAmount] = useState("");
+  const router = useRouter();
+  const handleClick = (link:string) => {
+    router.push(link);
+  }
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -122,10 +127,8 @@ export default function GiveComponent() {
                           onChange={(e) => setAmount(e.target.value)}
                         />
                       </div>
-                      <Button className="w-full bg-darkMossGreen text-white hover:bg-earthYellow">
-                        <a href="https://rcminn.churchcenter.com/giving?open-in-church-center-modal=true">
+                      <Button onClick={()=> handleClick("https://rcminn.churchcenter.com/giving?open-in-church-center-modal=true")} className="w-full bg-darkMossGreen text-white hover:bg-earthYellow">
                           Give Now
-                        </a>
                       </Button>
                     </form>
                   </TabsContent>
@@ -151,7 +154,7 @@ export default function GiveComponent() {
                           )}
                         </select>
                       </div>
-                      <Button className="w-full bg-darkMossGreen text-white hover:bg-earthYellow">
+                      <Button onClick={()=> handleClick("https://rcminn.churchcenter.com/giving?open-in-church-center-modal=true")} className="w-full bg-darkMossGreen text-white hover:bg-earthYellow">
                         {giveConfig.giveNow.recurring.buttonText}
                       </Button>
                     </form>
@@ -196,7 +199,7 @@ export default function GiveComponent() {
                           src={
                             giveConfig.digitalPayments.qrCodes.find(
                               (qr) => qr.app === app
-                            )?.qrCode || "/assets/dummyQR.png"
+                            )?.qrCode || "/assets/dummyqr.png"
                           }
                           alt={`${app} QR Code`}
                           width={100}

@@ -18,6 +18,7 @@ export const getInvolvedConfig = {
         "Worship Team",
         "Tech Team",
       ],
+      link:"resources/church-resources"
     },
     {
       title: "Join a Group",
@@ -30,6 +31,7 @@ export const getInvolvedConfig = {
         "Young Adults",
         "Seniors Fellowship",
       ],
+      link:"resources/church-resources"
     },
     {
       title: "Attend Events",
@@ -41,6 +43,7 @@ export const getInvolvedConfig = {
         "Community Outreach",
         "Special Conferences",
       ],
+      link:"events"
     },
   ],
   upcomingOpportunities: {
