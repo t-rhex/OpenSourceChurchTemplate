@@ -21,7 +21,7 @@ Refer to the documentation below for issues:
 - [Working with Forks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks)
 - [Syncing a Fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork
 )
-- 
+- [How to Contribute to Open Source Projects](https://opensource.guide/how-to-contribute/#how-to-submit-a-contribution)
 ### Run in Codespace or Local Machine
 -  Clone the forked repository to your local machine or open in codespaces
 - Run: 
