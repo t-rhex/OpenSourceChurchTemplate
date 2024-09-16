@@ -1,9 +1,6 @@
 # Open Source Church WebApp Template.
 
-A WebApp template where churches can readily:  
-- Post sermons and events
-- Encourage and obtain involvement through contact and donation forms
-- Give resources such as devotionals to their current or prospective community members 
+A WebApp template where churches can connect with current and prospective community members. 
 
 Everyone is invited to collaborate.
 
@@ -37,7 +34,7 @@ Refer to the documentation below for issues:
 Navigate to ```http://localhost:3000```
 
 
-**From this Fork, you are now able to adjust and change the codespace**
+**From this Fork, you are now able to adjust and change the codebase according to project guidelines and open issues.**
 
 ### Resolving an Issue
 
