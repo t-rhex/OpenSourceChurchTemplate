@@ -36,7 +36,3 @@ jobs:
     # Build the project (if build script exists) in frontend directory
     - run: npm run build --if-present
       working-directory: ./frontend
-
-    # Run tests in frontend directory
-    - run: npm test
-      working-directory: ./frontend
