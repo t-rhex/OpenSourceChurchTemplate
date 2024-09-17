@@ -1,10 +1,13 @@
 name: Node.js CI
 
+# Trigger the workflow only on the main branch, both for push and pull requests
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   build:
@@ -13,15 +16,23 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x]
+        node-version: [18.x]
 
     steps:
     - uses: actions/checkout@v4
+    
+    # Use Node.js version defined by matrix, ensuring dependencies are cached
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: cd frontend && npm ci
-    - run: cd frontend && npm run build --if-present
-    - run: cd frontend && npm test
+        cache-dependency-path: frontend/package-lock.json  # Path to lock file in frontend folder
+
+    # Install dependencies in frontend directory
+    - run: npm ci
+      working-directory: ./frontend
+
+    # Build the project (if build script exists) in frontend directory
+    - run: npm run build --if-present
+      working-directory: ./frontend

@@ -60,15 +60,15 @@ export const giveConfig = {
     qrCodes: [
       {
         app: "Cash App",
-        qrCode: "/assets/dummyQR.png",
+        qrCode: "/assets/dummyqr.png",
       },
       {
         app: "Zelle",
-        qrCode: "/assets/dummyQR.png",
+        qrCode: "/assets/dummyqr.png",
       },
       {
         app: "PayPal",
-        qrCode: "/assets/dummyQR.png",
+        qrCode: "/assets/dummyqr.png",
       },
     ],
   },

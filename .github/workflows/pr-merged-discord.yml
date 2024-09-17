@@ -1,0 +1,22 @@
+name: Notify Discord on PR Merge to Main
+
+on:
+  pull_request:
+    types: [closed] # Trigger when a PR is closed (merged or not)
+
+jobs:
+  notify-discord:
+    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main' # Only run if the PR was merged into main
+    runs-on: ubuntu-latest
+    environment: Production # Target the "Production" environment
+
+    steps:
+      - name: Send notification to Discord
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          curl -X POST -H "Content-Type: application/json" \
+          -d "{\"content\": \"A PR has been merged into the main branch! 🎉 \nRepository: ${{ github.repository }}\nMerged by: ${{ github.actor }}\nPR Title: ${{ github.event.pull_request.title }}\nPR Link: ${{ github.event.pull_request.html_url }}\"}" \
+          $DISCORD_WEBHOOK_URL
+      - name: Another step
+        run: echo "This is another step"

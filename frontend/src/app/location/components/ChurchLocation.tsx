@@ -7,9 +7,15 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MapPin, Clock, Car, Bus, Train } from "lucide-react";
 import { locationConfig } from "../config/LocationConfig";
+import { useRouter } from "next/navigation";
 
 export default function ChurchLocation() {
   const [activeTab, setActiveTab] = useState("car");
+  const router = useRouter();
+  const handleClick = (link:string) => {
+    router.push(link);
+  }
+
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -67,7 +73,7 @@ export default function ChurchLocation() {
                     allowFullScreen={true}
                     loading="lazy"></iframe>
                 </div>
-                <Button className="w-full bg-darkMossGreen text-white hover:bg-earthYellow">
+                <Button onClick={()=> handleClick(locationConfig.location.direction)} className="w-full bg-darkMossGreen text-white hover:bg-earthYellow">
                   Get Directions
                 </Button>
               </CardContent>
