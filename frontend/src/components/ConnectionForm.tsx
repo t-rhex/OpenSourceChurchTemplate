@@ -33,7 +33,7 @@ export default function EmbeddedFormModal() {
         <div className="flex-grow overflow-auto mt-2 sm:mt-4">
           <iframe
             src="https://3lhir9ms.paperform.co/?embed=1&takeover=0&inline=1&popup=0&_d=revivalcentermn.org&_in=0"
-            className="w-full h-full border-none min-h-[210vh] md:min-h-[130vh]"
+            className="w-full h-full border-none min-h-[230vh] md:min-h-[130vh]"
             allowFullScreen
           />
         </div>
