@@ -10,6 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Verify Webhook URL
+      run: echo "Webhook URL length: ${#secrets.DISCORD_WEBHOOK_URL}"
+
+    steps:
     - name: Send notification to Discord
       run: |
         curl -X POST -H "Content-Type: application/json" \
