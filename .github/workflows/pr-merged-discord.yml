@@ -8,20 +8,15 @@ jobs:
   notify-discord:
     if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main' # Only run if the PR was merged into main
     runs-on: ubuntu-latest
+    environment: Production # Target the "Production" environment
 
     steps:
-      - name: Verify Webhook URL
-        run: |
-          if [ -n "${{ secrets.DISCORD_WEBHOOK_URL }}" ]; then
-            echo "Webhook URL is set"
-          else
-            echo "Webhook URL is not set"
-            exit 1
-          fi
-
       - name: Send notification to Discord
-        if: success()
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
           curl -X POST -H "Content-Type: application/json" \
           -d "{\"content\": \"A PR has been merged into the main branch! 🎉 \nRepository: ${{ github.repository }}\nMerged by: ${{ github.actor }}\nPR Title: ${{ github.event.pull_request.title }}\nPR Link: ${{ github.event.pull_request.html_url }}\"}" \
-          "${{ secrets.DISCORD_WEBHOOK_URL }}"
+          $DISCORD_WEBHOOK_URL
+      - name: Another step
+        run: echo "This is another step"
