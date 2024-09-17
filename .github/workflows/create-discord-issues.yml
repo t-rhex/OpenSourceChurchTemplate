@@ -1,0 +1,23 @@
+name: Create Discord Issues
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  create-discord-issue:
+    runs-on: ubuntu-latest
+    environment: Production # Target the "Production" environment
+
+    steps:
+      - name: Create Discord Issue
+        env:
+          DISCORD_ISSUES_URL: ${{ secrets.DISCORD_ISSUES_URL }}
+        run: |
+          if [ -z "$DISCORD_ISSUES_URL" ]; then
+            echo "DISCORD_ISSUES_URL is not set"
+            exit 1
+          fi
+          curl -X POST -H "Content-Type: application/json" \
+          -d "{\"content\": \"An issue has been created! 🎉 \nRepository: ${{ github.repository }}\nIssue Title: ${{ github.event.issue.title }}\nIssue Link: ${{ github.event.issue.html_url }}\"}" \
+          $DISCORD_ISSUES_URL
