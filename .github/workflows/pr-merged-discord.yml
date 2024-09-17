@@ -17,4 +17,4 @@ jobs:
       run: |
         curl -X POST -H "Content-Type: application/json" \
         -d "{\"content\": \"A PR has been merged into the main branch! 🎉 \nRepository: ${{ github.repository }}\nMerged by: ${{ github.actor }}\nPR Title: ${{ github.event.pull_request.title }}\nPR Link: ${{ github.event.pull_request.html_url }}\"}" \
-        ${{ secrets.DISCORD_WEBHOOK_URL }}
+        "${{ secrets.DISCORD_WEBHOOK_URL }}"
