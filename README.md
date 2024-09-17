@@ -7,7 +7,14 @@ Everyone is invited to collaborate.
 ## Live Link
 [revival-tan.vercel.app](https://revival-tan.vercel.app/)
 
+## Maintainer
+
+[@t-rhex](https://github.com/t-rhex)
+
 ## Contributing
+
+Communications:
+- [Discord Link](https://discord.gg/Q2RcDDq3)
 
 ### Fork the Repository 
 1. To fork the repository, click on the **"Fork"** button from the repository main page
@@ -64,6 +71,16 @@ The easiest way to deploy this Church Template is to use the [Vercel Platform](h
 - [Next.js](https://nextjs.org/docs)
 - [Tailwind CSS](https://v2.tailwindcss.com/docs/installation)
 - [TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html)
+
+
+
+## License 
+
+[MIT License](https://github.com/t-rhex/OpenSourceChurchTemplate/blob/main/LICENSE) © Andrew Adhikari
+
+
+
+
 
 
 
