@@ -1,0 +1,35 @@
+name: Include Contributor
+
+on:
+  pull_request:
+    types: [closed]
+  schedule:
+    - cron: "20 20 * * *" # Run every day at 20:20 UTC
+
+jobs:
+  include-contributor:
+    runs-on: ubuntu-latest
+    environment: Production
+
+    steps:
+      - name: Check DISCORD_PAT
+        env:
+          DISCORD_PAT: ${{ secrets.DISCORD_PAT }}
+        run: |
+          if [ -z "$DISCORD_PAT" ]; then
+            echo "DISCORD_PAT is not set"
+            exit 1
+          fi
+
+      - uses: actions/checkout@v4
+
+      - uses: BobAnkh/add-contributors@master
+        with:
+          CONTRIBUTOR: "### Contributors"
+          COLUMN_PER_ROW: "6"
+          ACCESS_TOKEN: ${{ secrets.DISCORD_PAT }}
+          IMG_WIDTH: "100"
+          FONT_SIZE: "14"
+          PATH: "README.md"
+          COMMIT_MESSAGE: "docs(README): update contributors"
+          AVATAR_SHAPE: "round"
