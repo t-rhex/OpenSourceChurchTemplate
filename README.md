@@ -1,3 +1,5 @@
+[![Node.js CI](https://github.com/t-rhex/OpenSourceChurchTemplate/actions/workflows/node.js.yml/badge.svg?branch=main)](https://github.com/t-rhex/OpenSourceChurchTemplate/actions/workflows/node.js.yml)
+
 # Open Source Church WebApp Template
 
 A WebApp template where churches can connect with current and prospective community members. 
