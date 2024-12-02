@@ -12,21 +12,33 @@
 # next.js
 /.next/
 /out/
+.next/
+next-env.d.ts
 
 # production
 /build
+/dist
 
 # misc
 .DS_Store
 *.pem
+.idea/
+.vscode/
+*.swp
+*.swo
 
 # debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.pnpm-debug.log*
 
 # local env files
+.env
 .env*.local
+.env.development
+.env.test
+.env.production
 
 # vercel
 .vercel
@@ -34,3 +46,29 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# PWA files
+**/public/sw.js
+**/public/workbox-*.js
+**/public/worker-*.js
+**/public/sw.js.map
+**/public/workbox-*.js.map
+**/public/worker-*.js.map
+
+# Storybook
+storybook-static/
+
+# Cache
+.cache/
+.eslintcache
+
+# Prisma
+/prisma/*.db
+/prisma/migrations/
+prisma/dev.db
+prisma/dev.db-journal
+*.db
+*.db-journal
+/prisma/generated/
+.prisma/
+migrations.json
