@@ -7,17 +7,25 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
+
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const [mobileDropdowns, setMobileDropdowns] = useState<
-    Record<string, boolean>
-  >({});
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileDropdowns, setMobileDropdowns] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 100);
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   if (isLoading) {
@@ -39,20 +47,23 @@ export default function Header() {
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-white shadow-sm">
+      className={`fixed w-full z-50 transition-all duration-200 ${
+        isScrolled ? 'bg-white shadow-md' : 'bg-transparent'
+      }`}
+    >
       {headerConfig.subheader.enabled && (
-        <div className="bg-pakistanGreen text-white text-center py-2">
-          <p className="text-xs sm:text-sm md:text-base">
+        <div className="bg-green-700 text-white text-center py-2">
+          <p className="text-xs sm:text-sm md:text-base font-medium">
             {headerConfig.subheader.name}
           </p>
         </div>
       )}
-      <div className="container mx-auto px-4 py-2 sm:py-4">
-        <div className="flex items-center justify-between flex-wrap">
+      <div className="container mx-auto px-4 py-3 md:py-4">
+        <div className="flex items-center justify-between">
           <div className="flex-shrink-0">
-            <Link href="/" className="flex flex-col items-center">
+            <Link href="/" className="flex items-center">
               <Image
-                className="h-8 w-auto sm:h-10 md:h-12 lg:h-14"
+                className="h-8 w-auto sm:h-10 md:h-12"
                 src={headerConfig.logo.src}
                 alt={headerConfig.logo.alt}
                 width={100}
@@ -60,35 +71,32 @@ export default function Header() {
               />
             </Link>
           </div>
-          <nav className="hidden md:flex space-x-2 lg:space-x-4 xl:space-x-8">
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-8">
             {headerConfig.navItems.map((item) => (
               <div key={item.name} className="relative group">
                 {item.dropdown ? (
                   <>
                     <button
-                      className="flex items-center space-x-1 text-darkMossGreen hover:text-earthYellow"
-                      onClick={() =>
-                        setOpenDropdown(
-                          openDropdown === item.name ? null : item.name
-                        )
-                      }>
+                      className={`flex items-center space-x-1 text-sm font-medium group ${
+                        isScrolled ? 'text-gray-800' : 'text-white'
+                      } hover:text-green-700 transition-colors duration-200`}
+                      onClick={() => setOpenDropdown(openDropdown === item.name ? null : item.name)}
+                    >
                       <span>{item.name}</span>
                       <ChevronDown className="w-4 h-4" />
                     </button>
                     {openDropdown === item.name && (
-                      <div className="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                        <div
-                          className="py-1"
-                          role="menu"
-                          aria-orientation="vertical"
-                          aria-labelledby="options-menu">
+                      <div className="absolute left-0 mt-2 w-48 rounded-lg shadow-lg bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
+                        <div className="py-1" role="menu">
                           {item.dropdown.map((dropdownItem) => (
                             <Link
                               key={dropdownItem.name}
                               href={dropdownItem.href}
-                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                              role="menuitem"
-                              onClick={closeDropdowns}>
+                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-green-700"
+                              onClick={closeDropdowns}
+                            >
                               {dropdownItem.name}
                             </Link>
                           ))}
@@ -99,64 +107,18 @@ export default function Header() {
                 ) : (
                   <Link
                     href={item.href}
-                    className="text-darkMossGreen hover:text-earthYellow">
+                    className={`text-sm font-medium ${
+                      isScrolled ? 'text-gray-800' : 'text-white'
+                    } hover:text-green-700 transition-colors duration-200`}
+                  >
                     {item.name}
                   </Link>
                 )}
               </div>
             ))}
-          </nav>
 
-          <div className="hidden md:flex items-center space-x-2 lg:space-x-4">
-            {headerConfig.buttons
-              .filter((button) => button.enabled)
-              .map((button, index) =>
-                button.component ? (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}>
-                    {React.createElement(button.component, { closeMenu })}
-                  </motion.div>
-                ) : (
-                  <Link
-                    key={button.name}
-                    href={button.href}
-                    className={`text-xs sm:text-sm md:text-sm lg:text-base font-medium transition-colors duration-200 ${
-                      button.variant === "primary"
-                        ? "bg-darkMossGreen text-white hover:bg-earthYellow px-2 py-1 sm:px-3 sm:py-2 lg:px-4 lg:py-2 rounded-md"
-                        : "text-darkMossGreen hover:text-gray-900"
-                    }`}>
-                    {button.name}
-                  </Link>
-                )
-              )}
-          </div>
-          <div className="md:hidden flex items-center">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-500 hover:text-gray-900 p-2"
-              aria-label="Toggle menu">
-              {isMenuOpen ? (
-                <X className="h-5 w-5 sm:h-6 sm:w-6" />
-              ) : (
-                <Menu className="h-5 w-5 sm:h-6 sm:w-6" />
-              )}
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden container mx-auto px-4 py-2 sm:py-4 overflow-hidden">
-            <div className="flex flex-col space-y-2 sm:space-y-4">
+            {/* Desktop Buttons */}
+            <div className="flex items-center space-x-4">
               {headerConfig.buttons
                 .filter((button) => button.enabled)
                 .map((button, index) =>
@@ -165,36 +127,62 @@ export default function Header() {
                       key={index}
                       initial={{ opacity: 0, y: -20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1 }}>
+                      transition={{ delay: index * 0.1 }}
+                    >
                       {React.createElement(button.component, { closeMenu })}
                     </motion.div>
                   ) : (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: -20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1 }}>
-                      <Link
-                        href={button.href}
-                        className={`block text-center text-sm sm:text-base font-medium transition-colors duration-200 ${
-                          button.variant === "primary"
-                            ? "bg-darkMossGreen text-white hover:bg-earthYellow px-3 py-2 rounded-md"
-                            : "text-darkMossGreen hover:text-gray-900 hover:bg-gray-50 px-3 py-2 rounded-md"
-                        }`}
-                        onClick={closeMenu}>
-                        {button.name}
-                      </Link>
-                    </motion.div>
+                    <Link
+                      key={button.name}
+                      href={button.href}
+                      className={`text-sm font-medium transition-colors duration-200 ${
+                        button.variant === "primary"
+                          ? "bg-green-700 text-white hover:bg-green-800 px-4 py-2 rounded"
+                          : isScrolled
+                          ? "text-gray-800 hover:text-green-700"
+                          : "text-white hover:text-green-700"
+                      }`}
+                    >
+                      {button.name}
+                    </Link>
                   )
                 )}
+            </div>
+          </nav>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden p-2 -mr-2"
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? (
+              <X className={`h-6 w-6 ${isScrolled ? 'text-gray-800' : 'text-white'}`} />
+            ) : (
+              <Menu className={`h-6 w-6 ${isScrolled ? 'text-gray-800' : 'text-white'}`} />
+            )}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden bg-white border-t"
+          >
+            <div className="container mx-auto px-4 py-4 space-y-3">
               {headerConfig.navItems.map((item, index) => (
                 <motion.div
                   key={item.name}
-                  initial={{ opacity: 0, y: -20 }}
+                  initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    delay: (index + headerConfig.buttons.length) * 0.1,
-                  }}>
+                  transition={{ delay: index * 0.05 }}
+                >
                   {item.dropdown ? (
                     <div>
                       <button
@@ -204,22 +192,24 @@ export default function Header() {
                             [item.name]: !prev[item.name],
                           }))
                         }
-                        className="flex items-center justify-between w-full text-gray-500 hover:text-gray-900 hover:bg-gray-50 px-3 py-2 rounded-md text-sm sm:text-base font-medium">
-                        {item.name}
+                        className="flex items-center justify-between w-full py-2 text-gray-800 hover:text-green-700"
+                      >
+                        <span className="text-sm font-medium">{item.name}</span>
                         <ChevronDown
-                          className={`w-4 h-4 transition-transform ${
+                          className={`w-4 h-4 transform transition-transform ${
                             mobileDropdowns[item.name] ? "rotate-180" : ""
                           }`}
                         />
                       </button>
                       {mobileDropdowns[item.name] && (
-                        <div className="pl-4 mt-2 space-y-2">
+                        <div className="pl-4 space-y-2 mt-2">
                           {item.dropdown.map((dropdownItem) => (
                             <Link
                               key={dropdownItem.name}
                               href={dropdownItem.href}
-                              className="block text-gray-500 hover:text-gray-900 hover:bg-gray-50 px-3 py-2 rounded-md text-sm"
-                              onClick={closeMenu}>
+                              className="block py-2 text-sm text-gray-600 hover:text-green-700"
+                              onClick={closeMenu}
+                            >
                               {dropdownItem.name}
                             </Link>
                           ))}
@@ -229,13 +219,51 @@ export default function Header() {
                   ) : (
                     <Link
                       href={item.href}
-                      className="block text-gray-500 hover:text-gray-900 hover:bg-gray-50 px-3 py-2 rounded-md text-sm sm:text-base font-medium"
-                      onClick={closeMenu}>
+                      className="block py-2 text-sm font-medium text-gray-800 hover:text-green-700"
+                      onClick={closeMenu}
+                    >
                       {item.name}
                     </Link>
                   )}
                 </motion.div>
               ))}
+
+              {/* Mobile Buttons */}
+              <div className="pt-4 space-y-3">
+                {headerConfig.buttons
+                  .filter((button) => button.enabled)
+                  .map((button, index) =>
+                    button.component ? (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.05 }}
+                      >
+                        {React.createElement(button.component, { closeMenu })}
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.05 }}
+                      >
+                        <Link
+                          href={button.href}
+                          className={`block text-center text-sm font-medium py-2 ${
+                            button.variant === "primary"
+                              ? "bg-green-700 text-white hover:bg-green-800 rounded"
+                              : "text-gray-800 hover:text-green-700"
+                          }`}
+                          onClick={closeMenu}
+                        >
+                          {button.name}
+                        </Link>
+                      </motion.div>
+                    )
+                  )}
+              </div>
             </div>
           </motion.div>
         )}
@@ -246,27 +274,17 @@ export default function Header() {
 
 function HeaderSkeleton() {
   return (
-    <div className="bg-white shadow-sm animate-pulse">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-12 sm:h-16">
-          <div className="w-24 sm:w-32 h-6 sm:h-8 bg-gray-200 rounded"></div>
-          <div className="hidden md:flex space-x-4 lg:space-x-8">
-            {[1, 2, 3].map((i) => (
-              <div
-                key={i}
-                className="w-16 sm:w-20 h-4 bg-gray-200 rounded"></div>
+    <header className="bg-white shadow-sm">
+      <div className="container mx-auto px-4 py-4">
+        <div className="flex items-center justify-between">
+          <div className="w-32 h-8 bg-gray-200 rounded animate-pulse" />
+          <div className="hidden md:flex space-x-4">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="w-20 h-4 bg-gray-200 rounded animate-pulse" />
             ))}
           </div>
-          <div className="hidden sm:flex items-center space-x-2 lg:space-x-4">
-            {[1, 2].map((i) => (
-              <div
-                key={i}
-                className="w-20 sm:w-24 h-6 sm:h-8 bg-gray-200 rounded"></div>
-            ))}
-          </div>
-          <div className="md:hidden w-6 h-6 bg-gray-200 rounded"></div>
         </div>
       </div>
-    </div>
+    </header>
   );
 }
