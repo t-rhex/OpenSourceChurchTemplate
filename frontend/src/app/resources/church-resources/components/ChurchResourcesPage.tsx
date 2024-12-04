@@ -7,7 +7,7 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { churchResourcesConfig } from "@/configs/ChurchResourcesConfig";
 import { Search, Download, ExternalLink, FileText, File, FileSpreadsheet } from "lucide-react";
 
@@ -43,7 +43,7 @@ export default function ChurchResourcesPage() {
       resource.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       resource.description.toLowerCase().includes(searchTerm.toLowerCase())
     )
-  );
+  ) as Resource[];
 
   return (
     <div className="min-h-screen bg-background">

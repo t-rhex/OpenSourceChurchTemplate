@@ -31,7 +31,7 @@ export const watchConfig = {
   header: {
     title: "Watch Live & On-Demand",
     description: "Join us live or watch our previous services and messages",
-    backgroundImage: "/images/watch-header.jpg",
+    backgroundImage: "/assets/icons/new-placeholder.svg",
   },
   livestream: {
     isLive: false,
@@ -45,7 +45,7 @@ export const watchConfig = {
       id: "faith-foundations",
       title: "Faith Foundations",
       description: "A deep dive into the fundamental principles of our faith",
-      thumbnailUrl: "/images/series/faith-foundations.jpg",
+      thumbnailUrl: "/assets/icons/new-placeholder.svg",
       startDate: "2024-01-01",
       endDate: "2024-02-28",
     },
@@ -62,7 +62,7 @@ export const watchConfig = {
       platform: "youtube",
       videoId: "dQw4w9WgXcQ",
       seriesId: "faith-foundations",
-      thumbnailUrl: "/images/sermons/finding-peace.jpg",
+      thumbnailUrl: "/assets/icons/new-placeholder.svg",
     },
     // Add more sermons here
   ],

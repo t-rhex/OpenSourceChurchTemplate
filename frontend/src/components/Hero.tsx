@@ -10,7 +10,7 @@ export default function HeroSection() {
       {/* Full width hero image with overlay */}
       <div className="absolute inset-0">
         <Image
-          src="/assets/people.jpg"
+          src="/assets/icons/new-placeholder.svg"
           alt="Church Community"
           fill
           className="object-cover object-center opacity-60"
@@ -38,7 +38,7 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              Serve | Listen | Eat | Rest | Pray | Share
+              Love God | Love People | Serve People
             </motion.p>
             <motion.div 
               className="flex flex-col sm:flex-row gap-4 pt-8"
@@ -48,7 +48,7 @@ export default function HeroSection() {
             >
               <Link 
                 href="/visit"
-                className="px-8 py-3 text-base font-medium bg-earthYellow text-darkMossGreen rounded-full
+                className="px-8 py-3 text-base font-medium bg-earthYellow text-black rounded-full
                          hover:bg-earthYellow/90 transition-all duration-300 
                          inline-flex items-center justify-center sm:w-auto w-full
                          border border-earthYellow shadow-md hover:shadow-lg"

@@ -5,7 +5,7 @@ export const resourcesConfig = {
     title: "Resources",
     subtitle: "Grow in faith with our collection of resources",
     description: "Access devotionals, church documents, and spiritual materials to support your journey",
-    backgroundImage: "/assets/resources-header.jpg",
+    backgroundImage: "/assets/icons/new-placeholder.svg",
   },
   categories: [
     {
@@ -39,7 +39,7 @@ export const resourcesConfig = {
       title: "Weekly Devotional",
       type: "Devotional",
       description: "Start your week with spiritual reflection",
-      image: "/assets/placeholder.svg",
+      image: "/assets/icons/new-placeholder.svg",
       link: "/resources/devotional",
     },
     {
@@ -47,7 +47,7 @@ export const resourcesConfig = {
       title: "Membership Forms",
       type: "Document",
       description: "Important forms for church membership",
-      image: "/assets/placeholder.svg",
+      image: "/assets/icons/new-placeholder.svg",
       link: "/resources/church-resources",
     },
   ],

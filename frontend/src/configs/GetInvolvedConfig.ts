@@ -5,7 +5,7 @@ export const getInvolvedContent = {
     title: "Get Involved",
     subtitle: "Join us in making a difference in our community",
     description: "Find your place to serve, connect, and grow in faith",
-    image: "/assets/community-service.jpg",
+    image: "/assets/icons/new-placeholder.svg",
   },
   opportunities: [
     {

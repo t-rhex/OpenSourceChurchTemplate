@@ -11,12 +11,6 @@ import type { GivingMethod, PaymentOption } from "../config/GiveConfig";
 import PageHeader from "@/components/sections/PageHeader";
 import { CreditCard, Smartphone, Gift } from "lucide-react";
 
-// Map of icon IDs to their components
-const iconMap = {
-  CreditCard,
-  Smartphone,
-  Gift,
-};
 
 export default function GiveComponent() {
   const [mounted, setMounted] = useState(false);

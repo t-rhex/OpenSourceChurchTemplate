@@ -1,11 +1,10 @@
-import { ArrowRight } from "lucide-react";
 import ConnectionForm from "../components/ConnectionForm";
 import ContactModal from "../components/ui/ContactModal";
 
 export const headerConfig = {
   logo: {
-    src: "/assets/rcmn-logo-zip-file/png/rcmn-high-resolution-logo-black-transparent.png",
-    alt: "Revival Center Logo",
+    src: "/assets/logos/rcmn-logo.svg",
+    alt: "RCMN Logo",
   },
   navItems: [
     { name: "Watch", href: "/watch" },

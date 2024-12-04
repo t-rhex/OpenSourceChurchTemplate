@@ -1,11 +1,11 @@
-import { FileText, Download, BookOpen, Users, Newspaper, Heart } from "lucide-react";
+import { FileText,  Users, Heart } from "lucide-react";
 
 export const churchResourcesConfig = {
   hero: {
     title: "Church Resources",
     subtitle: "Access Important Church Documents and Forms",
     description: "Find all the resources you need to get involved and stay connected with our church community",
-    backgroundImage: "/assets/resources-header.jpg",
+    backgroundImage: "/assets/icons/new-placeholder.svg",
   },
   categories: [
     {

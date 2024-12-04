@@ -43,7 +43,7 @@ const features: Feature[] = [
     description:
       "Join us for special services, community outreach, and fellowship gatherings.",
     icon: CalendarIcon,
-    image: "/assets/placeholder.svg",
+    image: "/assets/icons/new-placeholder.svg",
     link: {
       text: "View Events",
       href: "/events",
@@ -54,7 +54,7 @@ const features: Feature[] = [
     description:
       "Located in the heart of our community, we're here to serve and welcome you.",
     icon: MapPinIcon,
-    image: "/assets/placeholder.svg",
+    image: "/assets/icons/new-placeholder.svg",
     link: {
       text: "Get Directions",
       href: "/location",
@@ -65,7 +65,7 @@ const features: Feature[] = [
     description:
       "Spreading love, hope, and compassion through faith and community service.",
     icon: HeartIcon,
-    image: "/assets/placeholder.svg",
+    image: "/assets/icons/new-placeholder.svg",
     link: {
       text: "Learn More",
       href: "/mission",
@@ -79,7 +79,7 @@ const highlights: Highlight[] = [
     date: "March 31, 2024",
     description:
       "Join us for a special Easter service celebrating the resurrection of Jesus Christ. Experience powerful worship, inspiring messages, and community fellowship.",
-    image: "/assets/placeholder.svg",
+    image: "/assets/icons/new-placeholder.svg",
     icon: Music2Icon,
     link: {
       text: "Learn More",
@@ -92,7 +92,7 @@ const highlights: Highlight[] = [
     date: "Starting April 2024",
     description:
       "Be part of our new community outreach initiative. Together, we'll serve our neighbors and share God's love through practical acts of service.",
-    image: "/assets/placeholder.svg",
+    image: "/assets/icons/new-placeholder.svg",
     icon: HandHeartIcon,
     link: {
       text: "Get Involved",

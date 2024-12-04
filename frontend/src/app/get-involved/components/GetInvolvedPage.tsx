@@ -3,9 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import PageLayout from "@/components/layouts/PageLayout";
 import { getInvolvedContent } from "@/configs/GetInvolvedConfig";
-import { HandHeartIcon, UsersIcon, BookOpenIcon } from "lucide-react";
 
 export default function GetInvolvedPage() {
   return (

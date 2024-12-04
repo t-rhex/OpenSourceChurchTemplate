@@ -4,14 +4,13 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { MapPin, Clock, Car, Bus, Train } from "lucide-react";
+import { MapPin, Clock } from "lucide-react";
 import { locationConfig } from "../config/LocationConfig";
+import type { ServiceTime, WhatToExpectItem } from "../config/LocationConfig";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 export default function ChurchLocation() {
-  const [activeTab, setActiveTab] = useState("car");
   const router = useRouter();
   
   const handleClick = (link: string) => {
@@ -24,8 +23,8 @@ export default function ChurchLocation() {
       <div className="relative bg-gray-900 -mt-[104px] md:-mt-[112px]">
         <div className="absolute inset-0">
           <Image
-            src={locationConfig.hero?.backgroundImage || "/images/location-header.jpg"}
-            alt=""
+            src={locationConfig.hero.backgroundImage || "/assets/icons/new-placeholder.svg"}
+            alt="Church location background"
             fill
             className="object-cover object-center opacity-60"
             priority
@@ -69,12 +68,15 @@ export default function ChurchLocation() {
                 </p>
                 <div className="aspect-video mb-4 rounded-lg overflow-hidden">
                   <iframe
+                    title="Church Location Map"
                     src={locationConfig.location.mapEmbedUrl}
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
                     allowFullScreen={true}
-                    loading="lazy" />
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
+                  />
                 </div>
                 <Button 
                   onClick={() => handleClick(locationConfig.location.direction)} 
@@ -99,7 +101,7 @@ export default function ChurchLocation() {
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
-                    {locationConfig.serviceTimes.map((service, index) => (
+                    {locationConfig.serviceTimes.map((service: ServiceTime, index: number) => (
                       <li key={index} className="flex justify-between">
                         <span className="font-medium text-darkMossGreen">
                           {service.day}
@@ -129,7 +131,7 @@ export default function ChurchLocation() {
                       {locationConfig.whatToExpect.description}
                     </p>
                     <ul className="space-y-2">
-                      {locationConfig.whatToExpect.items.map((item, index) => (
+                      {locationConfig.whatToExpect.items.map((item: WhatToExpectItem, index: number) => (
                         <li key={index} className="flex justify-between">
                           <span className="text-lg text-darkMossGreen">
                             {item.description}

@@ -17,7 +17,20 @@ const nextConfig = {
             },
         ],
     },
-    // ... other configurations
+    webpack: (config, { isServer }) => {
+        if (!isServer) {
+            config.resolve.alias = {
+                ...config.resolve.alias,
+                punycode: false,
+            };
+            config.resolve.fallback = {
+                ...config.resolve.fallback,
+                punycode: false,
+                url: false,
+            };
+        }
+        return config;
+    },
 };
 
 export default nextConfig;

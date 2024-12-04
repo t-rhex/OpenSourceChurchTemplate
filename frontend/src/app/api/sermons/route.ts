@@ -13,7 +13,7 @@ export async function GET() {
       platform: "youtube",
       videoId: "abc123xyz",
       seriesId: "faith-foundations",
-      thumbnailUrl: "/assets/placeholder.svg",
+      thumbnailUrl: "/assets/icons/new-placeholder.svg",
     },
     {
       id: "sermon-2",
@@ -24,7 +24,7 @@ export async function GET() {
       platform: "facebook",
       videoId: "987654321",
       seriesId: "faith-foundations",
-      thumbnailUrl: "/assets/placeholder.svg",
+      thumbnailUrl: "/assets/icons/new-placeholder.svg",
     },
     {
       id: "sermon-3",
@@ -36,7 +36,7 @@ export async function GET() {
       platform: "youtube",
       videoId: "ghi789rst",
       seriesId: "power-of-prayer",
-      thumbnailUrl: "/assets/placeholder.svg",
+      thumbnailUrl: "/assets/icons/new-placeholder.svg",
     },
     {
       id: "sermon-4",
@@ -47,7 +47,7 @@ export async function GET() {
       platform: "facebook",
       videoId: "jkl012mno",
       seriesId: "kingdom-living",
-      thumbnailUrl: "/assets/placeholder.svg",
+      thumbnailUrl: "/assets/icons/new-placeholder.svg",
     },
   ];
 

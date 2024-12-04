@@ -115,7 +115,7 @@ export default function WatchComponent() {
       <div className="relative bg-gray-900 -mt-[104px] md:-mt-[112px]">
         <div className="absolute inset-0">
           <Image
-            src={watchConfig.header.backgroundImage || "/images/watch-header.jpg"}
+            src={watchConfig.header.backgroundImage || "/assets/icons/new-placeholder.svg"}
             alt=""
             fill
             className="object-cover object-center opacity-60"

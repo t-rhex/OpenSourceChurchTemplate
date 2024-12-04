@@ -23,7 +23,7 @@ export const aboutConfig = {
     content:
       "David and Neelu are the Founding Pastors of Revival Center Minnesota Church. Both came from Hindu families in South India. Soon after their encounter with the Living God Jesus Christ, God called them into full-time ministry. Together, they have served in church and ministry, for around 20 years, and 18 years ago God called David to be a missionary to the USA. After their marriage, both traveled to different parts of the USA ministering to ethnic churches like Russians/Ukrainians, Armenians, Ethiopians, South Sudanese, Koreans, Hmong, Messianic Jews, Nepali/Bhutanese, Indians, Hispanics, and Americans. The Lord planted within David and Neelu’s heart, the vision to plant a Church in Minnesota to reach ALL PEOPLE GROUPS with the LOVE and HOPE of Lord Jesus Christ. Pastor David is a graduate of Victory Bible College & Victory Missions from Tulsa, OK.",
     buttonText: "Learn More",
-    image: "/assets/pastors.jpg",
+    image: "/assets/icons/new-placeholder.svg",
     imageAlt: "Our Pastors",
   },
   values: [
@@ -92,17 +92,17 @@ export const aboutConfig = {
     {
       name: "John Doe",
       role: "Founder & CEO",
-      image: "/placeholder.svg?height=400&width=400",
+      image: "/assets/icons/new-placeholder.svg",
     },
     {
       name: "Jane Smith",
       role: "COO",
-      image: "/placeholder.svg?height=400&width=400",
+      image: "/assets/icons/new-placeholder.svg",
     },
     {
       name: "Mike Johnson",
       role: "CTO",
-      image: "/placeholder.svg?height=400&width=400",
+      image: "/assets/icons/new-placeholder.svg",
     },
   ] as TeamMember[],
   mission: {
