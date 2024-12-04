@@ -1,12 +1,11 @@
-import ResourceComponent from "./ResourceDocuments";
+import ChurchResourcesPage from "./components/ChurchResourcesPage";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Forms and Documents",
+  title: "Church Resources | Revival Center",
+  description: "Access important church documents, forms, and resources",
 };
 
-const ResourcesPage = () => {
-  return <ResourceComponent />;
-};
-
-export default ResourcesPage;
+export default function ChurchResources() {
+  return <ChurchResourcesPage />;
+}

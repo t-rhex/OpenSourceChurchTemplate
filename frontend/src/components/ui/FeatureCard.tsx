@@ -12,60 +12,63 @@ interface FeatureCardProps {
 
 export default function FeatureCard({ feature }: FeatureCardProps) {
   return (
-    <Link href={feature.button.href}>
+    <Link href={feature.button.href} className="block h-full">
       <motion.div
-        className="group relative rounded-xl overflow-hidden aspect-[4/3] bg-white shadow-md hover:shadow-xl transition-all duration-300"
+        className="group relative h-full rounded-xl overflow-hidden bg-background-primary shadow-md 
+                   hover:shadow-xl transition-all duration-300"
         initial={{ scale: 1 }}
         whileHover={{ scale: 1.02 }}
-        transition={{ duration: 0.2, ease: "easeOut" }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
       >
         {/* Image Container */}
-        <div className="absolute inset-0">
+        <div className="relative aspect-[16/10]">
           <Image
             src={feature.backgroundImage}
             alt={feature.title}
             fill
             className="object-cover transform group-hover:scale-105 transition-transform duration-700"
-            quality={100}
+            quality={90}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background-dark/95 via-background-dark/60 to-transparent" />
         </div>
 
         {/* Content */}
-        <div className="relative h-full p-6 flex flex-col justify-end">
-          <div className="space-y-3">
+        <div className="relative p-6 sm:p-8">
+          <div className="space-y-4">
             {/* Icon */}
-            <div className="mb-2">
-              <feature.icon className="text-white w-8 h-8 opacity-90" />
+            <div className="mb-4">
+              <feature.icon className="text-primary w-8 h-8 opacity-90" />
             </div>
             
             {/* Title */}
-            <h3 className="text-xl md:text-2xl text-white font-bold tracking-tight">
+            <h3 className="text-xl sm:text-2xl text-gray-900 font-bold tracking-tight group-hover:text-primary transition-colors duration-300">
               {feature.title}
             </h3>
             
             {/* Description */}
-            <p className="text-gray-100 text-sm md:text-base leading-relaxed line-clamp-2 group-hover:line-clamp-none transition-all duration-300">
+            <p className="text-base text-gray-600 leading-relaxed">
               {feature.description}
             </p>
             
-            {/* Learn More Link */}
-            <div className="pt-3 flex items-center text-white text-sm font-medium opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-              {feature.button.text}
-              <svg
-                className="w-4 h-4 ml-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M13 7l5 5m0 0l-5 5m5-5H6"
-                />
-              </svg>
+            {/* Button */}
+            <div className="pt-4">
+              <span className="inline-flex items-center text-base font-medium text-primary group-hover:text-primary-dark transition-colors duration-300">
+                {feature.button.text}
+                <svg
+                  className="ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </span>
             </div>
           </div>
         </div>
