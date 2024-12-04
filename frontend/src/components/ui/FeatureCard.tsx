@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { FeatureConfig } from "@/types/FeatureConfig";
 import Image from "next/image";
+import Link from "next/link";
 
 interface FeatureCardProps {
   feature: FeatureConfig;
@@ -11,35 +12,67 @@ interface FeatureCardProps {
 
 export default function FeatureCard({ feature }: FeatureCardProps) {
   return (
-    <motion.div
-      className="relative rounded-lg shadow-lg overflow-hidden h-full"
-      initial={{ scale: 1 }}
-      whileHover={{ scale: 1.05 }}
-      transition={{ duration: 0.1 }}>
-      <Image
-        src={feature.backgroundImage}
-        alt=""
-        fill
-        className="object-cover absolute inset-0 z-0"
-        quality={100}
-      />
-      <div className="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
-      <div className="relative z-20 p-8 h-full flex flex-col justify-between">
-        <div>
-          <feature.icon className="text-white w-16 h-16 mb-6" />
-          <h3 className="text-2xl text-white font-bold mb-3 drop-shadow-lg">
-            {feature.title}
-          </h3>
-          <p className="text-white text-lg mb-6 drop-shadow-md">
-            {feature.description}
-          </p>
+    <Link href={feature.button.href} className="block h-full">
+      <motion.div
+        className="group relative h-full rounded-xl overflow-hidden bg-background-primary shadow-md 
+                   hover:shadow-xl transition-all duration-300"
+        initial={{ scale: 1 }}
+        whileHover={{ scale: 1.02 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+      >
+        {/* Image Container */}
+        <div className="relative aspect-[16/10]">
+          <Image
+            src={feature.backgroundImage}
+            alt={feature.title}
+            fill
+            className="object-cover transform group-hover:scale-105 transition-transform duration-700"
+            quality={90}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background-dark/95 via-background-dark/60 to-transparent" />
         </div>
-        <a
-          href={feature.button.href}
-          className={`${feature.button.className} text-center py-2 px-4 rounded-full transition-colors duration-300 hover:bg-opacity-90 font-semibold text-lg`}>
-          {feature.button.text}
-        </a>
-      </div>
-    </motion.div>
+
+        {/* Content */}
+        <div className="relative p-6 sm:p-8">
+          <div className="space-y-4">
+            {/* Icon */}
+            <div className="mb-4">
+              <feature.icon className="text-primary w-8 h-8 opacity-90" />
+            </div>
+            
+            {/* Title */}
+            <h3 className="text-xl sm:text-2xl text-gray-900 font-bold tracking-tight group-hover:text-primary transition-colors duration-300">
+              {feature.title}
+            </h3>
+            
+            {/* Description */}
+            <p className="text-base text-gray-600 leading-relaxed">
+              {feature.description}
+            </p>
+            
+            {/* Button */}
+            <div className="pt-4">
+              <span className="inline-flex items-center text-base font-medium text-primary group-hover:text-primary-dark transition-colors duration-300">
+                {feature.button.text}
+                <svg
+                  className="ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </Link>
   );
 }

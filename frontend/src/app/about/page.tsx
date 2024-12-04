@@ -1,8 +1,11 @@
-import React from "react";
-import AboutUs from "./aboutus/components/Aboutus";
+import AboutPage from "./components/AboutPage";
+import type { Metadata } from "next";
 
-const AboutPage = () => {
-  return <AboutUs />;
+export const metadata: Metadata = {
+  title: "About Us | Revival Center",
+  description: "Learn about our community united in faith, service, and love",
 };
 
-export default AboutPage;
+export default function About() {
+  return <AboutPage />;
+}

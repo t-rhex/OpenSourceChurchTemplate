@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
-import { footerConfig } from "@configs/FooterConfig";
+import { useEffect, useState } from "react";
+import { footerConfig } from "@/configs/FooterConfig";
+import FooterSkeleton from "./skeletons/FooterSkeleton";
 
 export default function Footer() {
   const [isLoading, setIsLoading] = useState(true);
@@ -24,20 +25,22 @@ export default function Footer() {
   );
 
   return (
-    <footer className="bg-pakistanGreen text-cornsilk py-8" role="contentinfo">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-8">
+    <footer className="bg-[#1a1a1a] text-white" role="contentinfo">
+      {/* Main Footer */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
           {enabledSections.map((section, index) => (
-            <div key={index} className="mb-4">
-              <h3 className="font-semibold mb-2 text-earthYellow">
+            <div key={index}>
+              <h3 className="font-semibold mb-6 text-earthYellow text-lg">
                 {section.title}
               </h3>
-              <ul className="space-y-2">
+              <ul className="space-y-4">
                 {section.links.map((link, linkIndex) => (
                   <li key={linkIndex}>
                     <Link
                       href={link.href}
-                      className="hover:text-earthYellow focus:outline-none focus:ring-2 focus:ring-earthYellow rounded">
+                      className="text-white/80 hover:text-earthYellow transition-colors duration-300
+                               focus:outline-none focus:ring-2 focus:ring-earthYellow/20 rounded">
                       {link.label}
                     </Link>
                   </li>
@@ -46,67 +49,55 @@ export default function Footer() {
             </div>
           ))}
         </div>
-        <div className="border-t border-darkMossGreen pt-8 mt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-4 md:mb-0 text-center md:text-left">
-              <p className="text-sm">
-                {footerConfig.contactInfo.address} |{" "}
-                {footerConfig.contactInfo.phone}
-              </p>
-            </div>
-            <div className="flex space-x-4">
-              {footerConfig.socialMedia.map((social, index) => (
-                <Link
-                  key={index}
-                  href={social.href}
-                  className="text-earthYellow hover:text-tigersEye focus:outline-none focus:ring-2 focus:ring-earthYellow rounded-full p-1"
-                  aria-label={social.label}>
-                  <social.icon size={24} />
-                </Link>
-              ))}
-            </div>
-          </div>
-          <div className="mt-8 text-sm text-center md:text-left">
-            <p>{footerConfig.legalInfo.copyright}</p>
-            <div className="mt-2">
-              {footerConfig.legalInfo.links.map((link, index) => (
-                <span key={index}>
-                  {index > 0 && " | "}
-                  <Link
-                    href={link.href}
-                    className="hover:text-earthYellow focus:outline-none focus:ring-2 focus:ring-earthYellow rounded">
-                    {link.label}
-                  </Link>
-                </span>
-              ))}
-            </div>
-            <p className="mt-2">{footerConfig.legalInfo.additionalText}</p>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-}
 
-function FooterSkeleton() {
-  return (
-    <footer className="bg-pakistanGreen text-cornsilk py-8" role="contentinfo">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-8">
-          {Array.from({ length: 4 }).map((_, index) => (
-            <div key={index} className="mb-4" data-testid="skeleton-item">
-              <div className="h-6 bg-darkMossGreen rounded w-3/4 mb-2"></div>
-              <div className="space-y-2">
-                {Array.from({ length: 4 }).map((_, linkIndex) => (
-                  <div
-                    key={linkIndex}
-                    className="h-4 bg-darkMossGreen rounded w-1/2"></div>
-                ))}
-              </div>
-            </div>
-          ))}
+        {/* Newsletter Section */}
+        <div className="mt-16 pt-16 border-t border-white/10">
+          <div className="max-w-2xl mx-auto text-center">
+            <h3 className="text-2xl font-semibold text-earthYellow mb-4">
+              Stay Connected
+            </h3>
+            <p className="text-white/80 mb-8">
+              Subscribe to our newsletter for updates, events, and spiritual insights.
+            </p>
+            <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="flex-1 px-4 py-3 rounded-full bg-white/10 border border-white/20
+                         text-white placeholder:text-white/50 focus:outline-none 
+                         focus:border-earthYellow/50 transition-colors duration-300"
+              />
+              <button
+                type="submit"
+                className="px-6 py-3 bg-darkMossGreen/90 text-white rounded-full
+                         hover:bg-darkMossGreen transition-all duration-300
+                         border border-earthYellow/20 shadow-md hover:shadow-lg">
+                Subscribe
+              </button>
+            </form>
+          </div>
         </div>
-        {/* ... rest of the skeleton ... */}
+
+        {/* Bottom Footer */}
+        <div className="mt-16 pt-8 border-t border-white/10">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-white/60 text-sm">
+              © {new Date().getFullYear()} Revival Center. All rights reserved.
+            </p>
+            <div className="flex items-center gap-6">
+              <Link
+                href="/privacy"
+                className="text-white/60 hover:text-earthYellow text-sm transition-colors duration-300">
+                Privacy Policy
+              </Link>
+              <Link
+                href="/terms"
+                className="text-white/60 hover:text-earthYellow text-sm transition-colors duration-300">
+                Terms of Service
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
     </footer>
   );

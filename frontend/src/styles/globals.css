@@ -1,0 +1,118 @@
+/* Add these styles */
+.header-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.header-wrapper.scrolled {
+  background: transparent;
+  backdrop-filter: blur(8px);
+}
+
+.announcement-bar {
+  background: var(--primary);
+  color: white;
+  text-align: center;
+  padding: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+}
+
+.main-header {
+  background: transparent;
+  padding: 1rem 0;
+  transition: all 0.3s ease;
+}
+
+/* Improve mobile navigation */
+@media (max-width: 768px) {
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(8px);
+    padding: 1rem;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 100;
+  }
+
+  .mobile-menu.open {
+    transform: translateX(0);
+  }
+
+  .mobile-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .mobile-nav-items {
+    padding: 1rem 0;
+  }
+
+  .mobile-nav-item {
+    padding: 0.75rem 0;
+    font-size: 1.125rem;
+    font-weight: 500;
+  }
+}
+
+/* Make text more readable on transparent header */
+.nav-item {
+  color: white;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.scrolled .nav-item {
+  color: #1a1a1a;
+  text-shadow: none;
+}
+
+/* Improve button styles */
+.nav-button {
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.nav-button:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.scrolled .nav-button {
+  background: var(--primary);
+  border: none;
+}
+
+@layer base {
+  /* ... other styles ... */
+
+  /* Header styles */
+  .header-blur {
+    @apply bg-white/80 backdrop-blur-lg;
+  }
+
+  .header-transparent {
+    @apply bg-transparent;
+  }
+
+  /* Add smooth transition for header background */
+  header {
+    transition: background-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
+  }
+}

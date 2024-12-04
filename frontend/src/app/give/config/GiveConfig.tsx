@@ -1,75 +1,71 @@
 import { CreditCard, Smartphone, Gift } from "lucide-react";
+import { LucideIcon } from "lucide-react";
+
+export interface GivingMethod {
+  id: string;
+  name: string;
+  description: string;
+  link?: string;
+  icon: LucideIcon;
+}
+
+export interface PaymentOption {
+  id: string;
+  name: string;
+  qrCode: string;
+  isActive: boolean;
+}
 
 export const giveConfig = {
-  hero: {
+  header: {
     title: "Support Our Ministry",
-    subtitle:
-      "Your generosity helps us spread the message of God's love, support our community, and make a difference in people's lives.",
+    description: "Your generosity helps us spread the message of God's love and make a difference in people's lives.",
+    backgroundImage: "/assets/icons/new-placeholder.svg",
   },
-  whyWeGive: {
-    title: "Why We Give",
-    content:
-      "Every contribution, no matter the size, is deeply appreciated and goes towards furthering our mission.",
-    quote: {
-      text: "Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver.",
-      source: "2 Corinthians 9:7",
-    },
+  scripture: {
+    verse: "Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver.",
+    reference: "2 Corinthians 9:7",
   },
-  testimonials: [
+  mainGivingLink: "https://rcminn.churchcenter.com/giving?open-in-church-center-modal=true",
+  givingMethods: [
     {
-      text: "Giving to our church has been such a blessing. It's amazing to see how our contributions help transform lives in our community.",
-      author: "Sarah M.",
+      id: "online",
+      name: "Online Giving",
+      description: "Give securely online through our Church Center platform",
+      link: "https://rcminn.churchcenter.com/giving",
+      icon: CreditCard,
     },
     {
-      text: "I've seen firsthand how our donations support vital programs. It's a joy to be part of this mission.",
-      author: "John D.",
+      id: "text",
+      name: "Text to Give",
+      description: "Text 'GIVE' to 55555",
+      icon: Smartphone,
     },
-  ],
-  giveNow: {
-    title: "Give Now",
-    oneTime: {
-      label: "One-Time Gift",
-      buttonText: "Give Now",
+    {
+      id: "mail",
+      name: "Mail a Check",
+      description: "123 Church St, City, State 12345",
+      icon: Gift,
     },
-    recurring: {
-      label: "Recurring Gift",
-      buttonText: "Set Up Recurring Gift",
-      frequencies: ["Weekly", "Monthly", "Quarterly"],
+  ] as GivingMethod[],
+  paymentOptions: [
+    {
+      id: "cashapp",
+      name: "Cash App",
+      qrCode: "/assets/cashapp-qr.png",
+      isActive: true,
     },
-  },
-  otherWays: {
-    title: "Other Ways to Give",
-    methods: [
-      {
-        icon: CreditCard,
-        text: "By Credit Card: Call our office at (123) 456-7890",
-      },
-      {
-        icon: Smartphone,
-        text: "Text-to-Give: Send 'GIVE' to 55555",
-      },
-      {
-        icon: Gift,
-        text: "Mail a Check: 123 Church St, City, State 12345",
-      },
-    ],
-  },
-  digitalPayments: {
-    title: "Digital Payment Options",
-    options: ["Cash App", "Zelle", "PayPal"],
-    qrCodes: [
-      {
-        app: "Cash App",
-        qrCode: "/assets/dummyqr.png",
-      },
-      {
-        app: "Zelle",
-        qrCode: "/assets/dummyqr.png",
-      },
-      {
-        app: "PayPal",
-        qrCode: "/assets/dummyqr.png",
-      },
-    ],
-  },
+    {
+      id: "zelle",
+      name: "Zelle",
+      qrCode: "/assets/zelle-qr.png",
+      isActive: true,
+    },
+    {
+      id: "paypal",
+      name: "PayPal",
+      qrCode: "/assets/paypal-qr.png",
+      isActive: true,
+    },
+  ] as PaymentOption[],
 };

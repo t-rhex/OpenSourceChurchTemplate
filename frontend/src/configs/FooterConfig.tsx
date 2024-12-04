@@ -39,9 +39,9 @@ export const footerConfig = {
       title: "Opportunities",
       enabled: true,
       links: [
-        { label: "Jobs", href: "/getinvolved" },
-        { label: "Internships", href: "/getinvolved" },
-        { label: "Apprenticeships", href: "/getinvolved" },
+        { label: "Jobs", href: "/get-involved" },
+        { label: "Internships", href: "/get-involved" },
+        { label: "Apprenticeships", href: "/get-involved" },
       ],
     },
     {
@@ -75,7 +75,7 @@ export const footerConfig = {
     { icon: TwitterIcon, label: "Twitter", href: "#" },
   ],
   legalInfo: {
-    copyright: "© 2024 Revival Church. All Rights Reserved",
+    copyright: " 2024 Revival Church. All Rights Reserved",
     links: [
       { label: "Terms Of Use", href: "/terms" },
       { label: "Privacy Policy", href: "/privacy" },

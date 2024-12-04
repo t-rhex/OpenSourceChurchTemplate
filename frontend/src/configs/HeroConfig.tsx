@@ -20,7 +20,7 @@ export const heroConfig = {
     },
   ],
   image: {
-    src: "/assets/placeholder.svg",
+    src: "/assets/icons/new-placeholder.svg",
     alt: "Church gathering",
     width: 600,
     height: 400,
@@ -41,8 +41,7 @@ export const heroConfig = {
         className:
           "mt-4 inline-block bg-darkMossGreen hover:bg-earthYellow text-white font-semibold py-2 px-4 rounded transition duration-300",
       },
-      backgroundImage:
-        "https://images.pexels.com/photos/2608517/pexels-photo-2608517.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", // Add this line
+      backgroundImage: "/assets/icons/new-placeholder.svg",
     },
     {
       icon: MapPin,
@@ -55,8 +54,7 @@ export const heroConfig = {
         className:
           "mt-4 inline-block bg-darkMossGreen hover:bg-earthYellow text-white font-semibold py-2 px-4 rounded transition duration-300",
       },
-      backgroundImage:
-        "https://images.pexels.com/photos/325521/pexels-photo-325521.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", // Add this line
+      backgroundImage: "/assets/icons/new-placeholder.svg",
     },
     {
       icon: Heart,
@@ -69,8 +67,7 @@ export const heroConfig = {
         className:
           "mt-4 inline-block bg-darkMossGreen hover:bg-earthYellow text-white font-semibold py-2 px-4 rounded transition duration-300",
       },
-      backgroundImage:
-        "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", // Add this line
+      backgroundImage: "/assets/icons/new-placeholder.svg",
     },
   ] as FeatureConfig[],
 };

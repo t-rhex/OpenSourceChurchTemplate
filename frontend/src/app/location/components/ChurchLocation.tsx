@@ -4,55 +4,57 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { MapPin, Clock, Car, Bus, Train } from "lucide-react";
+import { MapPin, Clock } from "lucide-react";
 import { locationConfig } from "../config/LocationConfig";
+import type { ServiceTime, WhatToExpectItem } from "../config/LocationConfig";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function ChurchLocation() {
-  const [activeTab, setActiveTab] = useState("car");
   const router = useRouter();
-  const handleClick = (link:string) => {
+  
+  const handleClick = (link: string) => {
     router.push(link);
-  }
-
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.3,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-      },
-    },
   };
 
   return (
-    <div className="bg-gradient-to-b from-white to-green-50 py-16">
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={containerVariants}
-        className="container mx-auto px-4 space-y-16">
-        <motion.h1
-          variants={itemVariants}
-          className="text-4xl md:text-5xl font-bold mb-8 text-center text-gray-800">
-          {locationConfig.title}
-        </motion.h1>
+    <div className="min-h-screen bg-background">
+      {/* Hero Section */}
+      <div className="relative bg-gray-900 -mt-[104px] md:-mt-[112px]">
+        <div className="absolute inset-0">
+          <Image
+            src={locationConfig.hero.backgroundImage || "/assets/icons/new-placeholder.svg"}
+            alt="Church location background"
+            fill
+            className="object-cover object-center opacity-60"
+            priority
+            quality={100}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-[#1a1a1a]/50 to-transparent" />
+        </div>
 
+        {/* Hero Content */}
+        <div className="relative min-h-[60vh] flex items-center">
+          <div className="container mx-auto px-4 pt-[104px] md:pt-[112px]">
+            <div className="max-w-4xl mx-auto text-center">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white">
+                {locationConfig.title}
+              </h1>
+              <p className="mt-6 text-xl sm:text-2xl text-white/90 font-medium">
+                {locationConfig.subtitle}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Content Section */}
+      <section className="container mx-auto px-4 py-16">
         <div className="grid md:grid-cols-2 gap-8 items-start">
-          <motion.div variants={itemVariants}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}>
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center text-2xl font-semibold text-gray-800">
@@ -64,119 +66,86 @@ export default function ChurchLocation() {
                 <p className="text-lg mb-4 text-darkMossGreen">
                   {locationConfig.location.address}
                 </p>
-                <div className="aspect-w-16 aspect-h-9 mb-4">
+                <div className="aspect-video mb-4 rounded-lg overflow-hidden">
                   <iframe
+                    title="Church Location Map"
                     src={locationConfig.location.mapEmbedUrl}
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
                     allowFullScreen={true}
-                    loading="lazy"></iframe>
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
+                  />
                 </div>
-                <Button onClick={()=> handleClick(locationConfig.location.direction)} className="w-full bg-darkMossGreen text-white hover:bg-earthYellow">
+                <Button 
+                  onClick={() => handleClick(locationConfig.location.direction)} 
+                  className="w-full bg-darkMossGreen text-white hover:bg-earthYellow">
                   Get Directions
                 </Button>
               </CardContent>
             </Card>
           </motion.div>
 
-          {locationConfig.whatToExpect.enabled && (
-            <motion.div variants={itemVariants} className="space-y-8">
+          <div className="space-y-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}>
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center text-2xl font-semibold text-gray-800">
                     <Clock className="mr-2 h-6 w-6 text-earthYellow" />
-                    {locationConfig.whatToExpect.title}
+                    Service Times
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-lg mb-4 text-darkMossGreen">
-                    {locationConfig.whatToExpect.description}
-                  </p>
                   <ul className="space-y-2">
-                    {locationConfig.whatToExpect.items.map((item, index) => (
+                    {locationConfig.serviceTimes.map((service: ServiceTime, index: number) => (
                       <li key={index} className="flex justify-between">
-                        <span className="text-lg text-darkMossGreen">
-                          {item.description}
+                        <span className="font-medium text-darkMossGreen">
+                          {service.day}
                         </span>
+                        <span className="text-darkMossGreen">{service.time}</span>
                       </li>
                     ))}
                   </ul>
                 </CardContent>
               </Card>
             </motion.div>
-          )}
 
-          <motion.div variants={itemVariants} className="space-y-8">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center text-2xl font-semibold text-gray-800">
-                  <Clock className="mr-2 h-6 w-6 text-earthYellow" />
-                  Service Times
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2">
-                  {locationConfig.serviceTimes.map((service, index) => (
-                    <li key={index} className="flex justify-between">
-                      <span className="font-medium text-darkMossGreen">
-                        {service.day}
-                      </span>
-                      <span className="text-darkMossGreen">{service.time}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-
-            {locationConfig.directions.enabled && (
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-2xl font-semibold text-gray-800">
-                    How to Get Here
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <Tabs
-                    value={activeTab}
-                    onValueChange={setActiveTab}
-                    className="w-full">
-                    <TabsList className="grid w-full grid-cols-3">
-                      <TabsTrigger value="car">
-                        <Car className="mr-2 h-4 w-4" />
-                        Car
-                      </TabsTrigger>
-                      <TabsTrigger value="bus">
-                        <Bus className="mr-2 h-4 w-4" />
-                        Bus
-                      </TabsTrigger>
-                      <TabsTrigger value="train">
-                        <Train className="mr-2 h-4 w-4" />
-                        Train
-                      </TabsTrigger>
-                    </TabsList>
-                    <TabsContent value="car" className="mt-4">
-                      <p className="text-darkMossGreen">
-                        {locationConfig.directions.car}
-                      </p>
-                    </TabsContent>
-                    <TabsContent value="bus" className="mt-4">
-                      <p className="text-darkMossGreen">
-                        {locationConfig.directions.bus}
-                      </p>
-                    </TabsContent>
-                    <TabsContent value="train" className="mt-4">
-                      <p className="text-darkMossGreen">
-                        {locationConfig.directions.train}
-                      </p>
-                    </TabsContent>
-                  </Tabs>
-                </CardContent>
-              </Card>
+            {locationConfig.whatToExpect.enabled && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}>
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center text-2xl font-semibold text-gray-800">
+                      <Clock className="mr-2 h-6 w-6 text-earthYellow" />
+                      {locationConfig.whatToExpect.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-lg mb-4 text-darkMossGreen">
+                      {locationConfig.whatToExpect.description}
+                    </p>
+                    <ul className="space-y-2">
+                      {locationConfig.whatToExpect.items.map((item: WhatToExpectItem, index: number) => (
+                        <li key={index} className="flex justify-between">
+                          <span className="text-lg text-darkMossGreen">
+                            {item.description}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              </motion.div>
             )}
-          </motion.div>
+          </div>
         </div>
-      </motion.div>
+      </section>
     </div>
   );
 }
