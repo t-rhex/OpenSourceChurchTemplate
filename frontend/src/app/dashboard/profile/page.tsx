@@ -41,7 +41,7 @@ export default async function ProfilePage() {
             <Label className="text-sm font-medium text-gray-900">Role</Label>
             <Input
               disabled
-              value={(session?.user as any)?.role || "User"}
+              value={session?.user?.role || "User"}
               className="bg-gray-50 text-gray-600"
             />
           </div>

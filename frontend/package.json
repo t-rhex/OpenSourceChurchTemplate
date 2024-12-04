@@ -48,6 +48,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@radix-ui/react-progress": "1.1.0",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",
     "@types/jest": "^29.5.13",

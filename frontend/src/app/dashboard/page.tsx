@@ -39,7 +39,7 @@ export default async function DashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-gray-900">
-              {(session?.user as any)?.role || "User"}
+              {session?.user?.role || "User"}
             </div>
             <p className="mt-2 text-sm text-gray-600">
               Account type

@@ -1,9 +1,15 @@
 import { withAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";
 
+type UserRole = "ADMIN" | "MEMBER" | undefined;
+
+interface AuthToken {
+  role?: UserRole;
+}
+
 export default withAuth(
   function middleware(req) {
-    const token = req.nextauth.token;
+    const token = req.nextauth.token as AuthToken;
     const isAuthPage = req.nextUrl.pathname.startsWith("/auth");
     const isDashboardPage = req.nextUrl.pathname.startsWith("/dashboard");
 
@@ -22,21 +28,21 @@ export default withAuth(
       // Handle user management page access (admin only)
       if (
         req.nextUrl.pathname.startsWith("/dashboard/users") && 
-        (token as any)?.role !== "ADMIN"
+        token?.role !== "ADMIN"
       ) {
         return NextResponse.redirect(new URL("/dashboard", req.url));
       }
     }
 
     // Handle admin routes
-    if (req.nextUrl.pathname.startsWith("/admin") && (token as any)?.role !== "ADMIN") {
+    if (req.nextUrl.pathname.startsWith("/admin") && token?.role !== "ADMIN") {
       return NextResponse.redirect(new URL("/dashboard", req.url));
     }
 
     // Handle member routes
     if (
       req.nextUrl.pathname.startsWith("/member") &&
-      !["ADMIN", "MEMBER"].includes((token as any)?.role as string)
+      !["ADMIN", "MEMBER"].includes(token?.role ?? "")
     ) {
       return NextResponse.redirect(new URL("/dashboard", req.url));
     }

@@ -37,7 +37,7 @@ export default function ChurchResourcesPage() {
   };
 
   const filteredResources = churchResourcesConfig.categories.flatMap(category =>
-    category.resources.filter(resource =>
+    category.resources.filter(() =>
       activeCategory === "all" || category.id === activeCategory
     ).filter(resource =>
       resource.title.toLowerCase().includes(searchTerm.toLowerCase()) ||

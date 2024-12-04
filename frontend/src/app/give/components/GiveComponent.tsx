@@ -9,8 +9,7 @@ import { useRouter } from "next/navigation";
 import { giveConfig } from "../config/GiveConfig";
 import type { GivingMethod, PaymentOption } from "../config/GiveConfig";
 import PageHeader from "@/components/sections/PageHeader";
-import { CreditCard, Smartphone, Gift } from "lucide-react";
-
+import { CreditCard } from "lucide-react";
 
 export default function GiveComponent() {
   const [mounted, setMounted] = useState(false);
@@ -54,7 +53,7 @@ export default function GiveComponent() {
             transition={{ duration: 0.5 }}
             className="mb-12 text-center">
             <blockquote className="text-xl italic text-gray-700">
-              "{giveConfig.scripture.verse}"
+              &quot;{giveConfig.scripture.verse}&quot;
               <footer className="mt-2 text-gray-600">
                 - {giveConfig.scripture.reference}
               </footer>
