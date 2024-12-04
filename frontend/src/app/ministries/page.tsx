@@ -32,7 +32,7 @@ export default function MinistriesPage() {
               <div className="p-6">
                 <h3 className="text-2xl font-semibold text-gray-900 mb-4">Outreach Ministry</h3>
                 <p className="text-gray-600 mb-4">
-                  Serving our community and spreading God's love through practical actions.
+                  Serving our community and spreading God&apos;s love through practical actions.
                 </p>
                 <ul className="text-gray-600 space-y-2">
                   <li>• Community service projects</li>

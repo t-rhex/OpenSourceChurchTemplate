@@ -22,7 +22,7 @@ export default function VisitPage() {
                 <li>Warm and welcoming community</li>
                 <li>Contemporary worship</li>
                 <li>Biblical teaching</li>
-                <li>Children's ministry available</li>
+                <li>Children&#39;s ministry available</li>
               </ul>
             </div>
             <div>
@@ -34,7 +34,7 @@ export default function VisitPage() {
               <div className="bg-gray-100 p-6 rounded-lg">
                 <h3 className="text-2xl font-bold mb-4">First Time?</h3>
                 <p className="text-gray-600 mb-4">
-                  We'd love to meet you! Stop by our welcome desk when you arrive.
+                  We&#39;d love to meet you! Stop by our welcome desk when you arrive.
                 </p>
                 <a 
                   href="/get-involved"

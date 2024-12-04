@@ -6,10 +6,8 @@ import { Button } from "@/components/ui/button";
 import { 
   LayoutDashboard, 
   UserCircle, 
-  Users,
-  LogOut 
+  Users
 } from "lucide-react";
-import { signOut } from "next-auth/react";
 import { cn } from "@/lib/utils";
 import { SignOutButton } from "./components/sign-out-button";
 
@@ -24,7 +22,7 @@ export default async function DashboardLayout({
     redirect("/auth/signin");
   }
 
-  const isAdmin = (session.user as any)?.role === "ADMIN";
+  const isAdmin = session.user?.role === "ADMIN";
 
   return (
     <div className="flex h-screen bg-gray-50/40">

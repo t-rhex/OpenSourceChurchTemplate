@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { theme } from "@/configs/DesignSystem";
 
 interface PageLayoutProps {
   children: React.ReactNode;

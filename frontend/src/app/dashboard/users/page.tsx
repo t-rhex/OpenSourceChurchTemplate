@@ -9,7 +9,7 @@ import { formatDistance } from "date-fns";
 export default async function UsersPage() {
   const session = await getServerSession(authOptions);
 
-  if (!session || (session.user as any)?.role !== "ADMIN") {
+  if (!session || session.user?.role !== "ADMIN") {
     redirect("/dashboard");
   }
 
