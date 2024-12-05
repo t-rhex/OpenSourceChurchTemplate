@@ -1,98 +1,109 @@
 [![Node.js CI](https://github.com/t-rhex/OpenSourceChurchTemplate/actions/workflows/node.js.yml/badge.svg?branch=main)](https://github.com/t-rhex/OpenSourceChurchTemplate/actions/workflows/node.js.yml)
+![Next.js](https://img.shields.io/badge/Next.js-13-black)
+![Tailwind](https://img.shields.io/badge/Tailwind-3-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
+![Prisma](https://img.shields.io/badge/Prisma-3-blue)
 
-# Open Source Church WebApp Template
+# 🙏 Open Source Church WebApp Template
 
-A WebApp template where churches can connect with current and prospective community members. 
+A modern, responsive web application template designed for churches to connect with their community. Built with Next.js 15, TypeScript, and Tailwind CSS.
 
-Everyone is invited to collaborate. 
+## ✨ Features
 
-## Live Link
-[revival-tan.vercel.app](https://revival-tan.vercel.app/)
+### 🏠 Home Page
+- Dynamic hero section with customizable background
+- Featured events and announcements
+- Latest sermons preview
+- Newsletter signup integration
 
-## Maintainer
+### 📺 Watch Page
+- Live streaming integration
+- Sermon archive with search functionality
+- Video categorization and playlists
+- Mobile-optimized video player
 
+### 🤝 Get Involved
+- Ministry teams overview
+- Volunteer opportunities
+- Event calendar
+- Small groups registration
+
+### 💝 Give
+- Secure online giving platform
+- Campaign support
+- Recurring donation setup
+- Multiple payment methods
+
+### 📱 Mobile-First Design
+- Responsive across all devices
+- Touch-friendly navigation
+- Optimized images and assets
+- Fast loading times
+
+### ⚡ Technical Features
+- Next.js 15 App Router
+- TypeScript for type safety
+- Tailwind CSS for styling
+- Framer Motion animations
+- SEO optimized
+- Performance optimized
+- Component-based architecture
+
+## 🌐 Live Demo
+[View Live Demo](https://rctemplate.churchfoundry.com/)
+
+## 👥 Maintainer
 [@t-rhex](https://github.com/t-rhex)
 
-## Contributing
+## 🤝 Contributing
 
-Communications:
-- [Discord Link](https://discord.gg/Q2RcDDq3)
+### 💬 Join Our Community
+- [Discord Community](https://discord.gg/Q2RcDDq3)
 
-### Fork the Repository 
-1. To fork the repository, click on the **"Fork"** button from the repository main page
-2. Click **"Create New Fork"** page where you select the owner (your personal github account)
-3. Connect your local to the original “upstream” repository by adding it as a remote.
-4. Create a branch for your own edits
+### 🔄 Fork and Contribute
+1. Fork the repository using the **"Fork"** button
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-### Resolving an Issue
+### 🐛 Issue Resolution
+1. Browse [Open Issues](https://github.com/t-rhex/OpenSourceChurchTemplate/issues)
+2. Pick an issue you can handle
+3. Comment on the issue to get assigned
+4. Submit a PR referencing the issue
 
-1. Browse Open Issues on the main repository 
-2. Pick an issue you are capable of working on
-3. Work on your forked and updated repo with your feature branch
-4. Submit a PR (Pull Request)
-    - Squash multiple commits into one
-    - Reference any relevant issues or supporting documentation in your PR (for example, “Closes #37.”)
+## 🚀 Getting Started
 
-**General Note:** Pull in changes from “upstream” often so that you stay up to date and have less merge conflicts
-
-Refer to the documentation below for more information:
-
-- [How to Contribute to Open Source Projects](https://opensource.guide/how-to-contribute/#how-to-submit-a-contribution)
-## Getting Started
- Clone the forked repository to your local machine or open in codespaces
-
-Run the development server: 
+1. Clone the repository
+```bash
+git clone https://github.com/yourusername/OpenSourceChurchTemplate.git
 ```
+
+2. Install dependencies
+```bash
 cd frontend
 npm install
-npm run build
 ```
-```
+
+3. Run the development server
+```bash
 npm run dev
 ```
 
-or
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-```
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 📝 License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-Navigate to ```http://localhost:3000``` with your browser to see the site.
-
-**From this Fork, you can now adjust and change the codebase** 
+## 🙌 Support
+If you like this project, please give it a ⭐️!
 
 ## Deploy on Vercel
 
-The easiest way to deploy this Church Template is to use the [Vercel Platform](https://vercel.com/home). 
+The easiest way to deploy this Church Template is to use the [Vercel Platform](https://vercel.com/home).
 
 ## Built With
 - [Next.js](https://nextjs.org/docs)
 - [Tailwind CSS](https://v2.tailwindcss.com/docs/installation)
 - [TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html)
-
-
-
-## License 
-
-[MIT License](https://github.com/t-rhex/OpenSourceChurchTemplate/blob/main/LICENSE) © Andrew Adhikari
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
