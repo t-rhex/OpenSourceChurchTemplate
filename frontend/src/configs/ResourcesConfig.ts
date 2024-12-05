@@ -3,8 +3,6 @@ import { BookOpen, FileText, BookOpenText } from "lucide-react";
 export const resourcesConfig = {
   hero: {
     title: "Resources",
-    subtitle: "Grow in faith with our collection of resources",
-    description: "Access devotionals, church documents, and spiritual materials to support your journey",
     backgroundImage: "/assets/icons/new-placeholder.svg",
   },
   categories: [

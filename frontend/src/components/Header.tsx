@@ -30,13 +30,13 @@ export default function Header() {
       </div>
 
       {/* Main Header */}
-      <div className="mx-4 mt-4">
+      <div className="mx-2 sm:mx-4 mt-2 sm:mt-4">
         <header
           className={cn(
             "w-full rounded-full transition-all duration-300",
             "bg-gray-100/95 backdrop-blur-sm",
             "border border-gray-200/20",
-            "px-4",
+            "px-2 sm:px-4",
             isScrolled && "shadow-lg"
           )}
         >
@@ -74,7 +74,7 @@ export default function Header() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(true)}
-              className="md:hidden p-2"
+              className="md:hidden p-1 sm:p-2"
               aria-label="Open menu"
               title="Open menu"
             >
@@ -114,18 +114,18 @@ export default function Header() {
                   <X className="text-gray-600" />
                 </button>
               </div>
-              <nav className="flex-1 overflow-auto p-4">
+              <nav className="flex-1 overflow-auto px-4 py-2">
                 {headerConfig.navItems.map((item) => (
                   <Link
                     key={item.name}
                     href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block py-3 text-lg font-medium text-gray-600 hover:text-gray-900"
+                    className="block py-2 text-base sm:text-lg font-medium text-gray-600 hover:text-gray-900 transition-colors"
                   >
                     {item.name}
                   </Link>
                 ))}
-                <Button className="w-full mt-4">Contact Us</Button>
+                <Button className="w-full mt-4 bg-green-600 hover:bg-green-700 text-white rounded-full">Contact Us</Button>
               </nav>
             </div>
           </motion.div>
