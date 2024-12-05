@@ -166,264 +166,315 @@ export default function EventPage() {
   };
 
   return (
-    <div className="bg-gradient-to-b from-white to-green-50 min-h-screen">
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className="container mx-auto px-4 py-16">
-        <motion.h1
-          initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          className="text-4xl md:text-5xl font-bold mb-8 text-center text-gray-800">
-          Upcoming Events
-        </motion.h1>
-
-        <div className="flex justify-center space-x-4 mb-8">
-          <Button
-            variant={view === "list" ? "default" : "outline"}
-            onClick={() => setView("list")}>
-            List View
-          </Button>
-          <Button
-            variant={view === "calendar" ? "default" : "outline"}
-            onClick={() => setView("calendar")}>
-            Calendar View
-          </Button>
+    <div className="min-h-screen bg-background">
+      {/* Hero Section */}
+      <div className="relative bg-gray-900 -mt-[104px] md:-mt-[112px]">
+        <div className="absolute inset-0">
+          <Image
+            src="/assets/placeholder.svg"
+            alt="Events"
+            fill
+            className="object-cover object-center opacity-60"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-[#1a1a1a]/50 to-transparent" />
         </div>
 
-        {view === "list" ? (
+        <div className="relative min-h-[60vh] flex items-center">
+          <div className="container mx-auto px-4 pt-[104px] md:pt-[112px]">
+            <div className="max-w-4xl mx-auto text-center space-y-4 md:space-y-6">
+              <motion.h1
+                className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}>
+                Church Events
+              </motion.h1>
+              <motion.p
+                className="text-xl sm:text-2xl text-white/90 font-medium"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}>
+                Join us in fellowship and community
+              </motion.p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* View Toggle Section */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
           <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.5 }}>
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="flex justify-center space-x-4 mb-8">
+            <Button
+              variant={view === "list" ? "default" : "outline"}
+              onClick={() => setView("list")}>
+              List View
+            </Button>
+            <Button
+              variant={view === "calendar" ? "default" : "outline"}
+              onClick={() => setView("calendar")}>
+              Calendar View
+            </Button>
+          </motion.div>
+
+          {view === "list" ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {paginatedEvents.map((event) => (
-                <Card
+              {paginatedEvents.map((event, index) => (
+                <motion.div
                   key={event.id}
-                  className="hover:shadow-lg transition-shadow duration-300">
-                  <Image
-                    src={event.image}
-                    alt={event.title}
-                    width={400}
-                    height={200}
-                    className="w-full h-48 object-cover"
-                  />
-                  <CardHeader>
-                    <div className="flex justify-between items-start">
-                      <CardTitle className="text-xl font-semibold text-gray-800">
-                        {event.title}
-                      </CardTitle>
-                      {getEventStatus(event.date)}
-                    </div>
-                    <CardDescription className="text-sm text-gray-600">
-                      {format(event.date, "MMMM d, yyyy")}{" "}
-                      {event.endDate &&
-                        `- ${format(event.endDate, "MMMM d, yyyy")}`}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-700 line-clamp-2">
-                      {event.description}
-                    </p>
-                  </CardContent>
-                  <CardContent>
-                    <Dialog>
-                      <DialogTrigger asChild>
-                        <Button variant="outline" className="w-full">
-                          View Details
-                        </Button>
-                      </DialogTrigger>
-                      <DialogContent className="sm:max-w-[425px]">
-                        <DialogHeader>
-                          <DialogTitle>{event.title}</DialogTitle>
-                          <DialogDescription>
-                            {event.date.toLocaleDateString()}{" "}
-                            {event.endDate &&
-                              `- ${event.endDate.toLocaleDateString()}`}
-                          </DialogDescription>
-                        </DialogHeader>
-                        <div className="grid gap-4 py-4">
-                          <div className="flex items-center gap-4">
-                            <Image
-                              src={event.image}
-                              alt={event.title}
-                              width={150}
-                              height={150}
-                              className="rounded-md object-cover"
-                            />
-                            <p className="text-sm text-gray-700">
-                              {event.description}
-                            </p>
-                          </div>
-                          <div className="grid grid-cols-2 gap-4 text-sm">
-                            <div className="flex items-center">
-                              <Clock className="mr-2 h-4 w-4 text-blue-500" />
-                              {event.time}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}>
+                  <Card className="h-full">
+                    <Image
+                      src={event.image}
+                      alt={event.title}
+                      width={400}
+                      height={200}
+                      className="w-full h-48 object-cover"
+                    />
+                    <CardHeader>
+                      <div className="flex justify-between items-start">
+                        <CardTitle className="text-xl font-semibold text-gray-800">
+                          {event.title}
+                        </CardTitle>
+                        {getEventStatus(event.date)}
+                      </div>
+                      <CardDescription className="text-sm text-gray-600">
+                        {format(event.date, "MMMM d, yyyy")}{" "}
+                        {event.endDate &&
+                          `- ${format(event.endDate, "MMMM d, yyyy")}`}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-gray-700 line-clamp-2">
+                        {event.description}
+                      </p>
+                    </CardContent>
+                    <CardContent>
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <Button variant="outline" className="w-full">
+                            View Details
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent className="sm:max-w-[425px]">
+                          <DialogHeader>
+                            <DialogTitle>{event.title}</DialogTitle>
+                            <DialogDescription>
+                              {event.date.toLocaleDateString()}{" "}
+                              {event.endDate &&
+                                `- ${event.endDate.toLocaleDateString()}`}
+                            </DialogDescription>
+                          </DialogHeader>
+                          <div className="grid gap-4 py-4">
+                            <div className="flex items-center gap-4">
+                              <Image
+                                src={event.image}
+                                alt={event.title}
+                                width={150}
+                                height={150}
+                                className="rounded-md object-cover"
+                              />
+                              <p className="text-sm text-gray-700">
+                                {event.description}
+                              </p>
                             </div>
-                            <div className="flex items-center">
-                              <MapPin className="mr-2 h-4 w-4 text-blue-500" />
-                              {event.location}
+                            <div className="grid grid-cols-2 gap-4 text-sm">
+                              <div className="flex items-center">
+                                <Clock className="mr-2 h-4 w-4 text-blue-500" />
+                                {event.time}
+                              </div>
+                              <div className="flex items-center">
+                                <MapPin className="mr-2 h-4 w-4 text-blue-500" />
+                                {event.location}
+                              </div>
+                              <div className="flex items-center">
+                                <Users className="mr-2 h-4 w-4 text-blue-500" />
+                                Capacity: {event.capacity}
+                              </div>
+                              <div className="flex items-center">
+                                <Info className="mr-2 h-4 w-4 text-blue-500" />
+                                {event.ageGroup}
+                              </div>
                             </div>
-                            <div className="flex items-center">
-                              <Users className="mr-2 h-4 w-4 text-blue-500" />
-                              Capacity: {event.capacity}
+                            <div>
+                              <h4 className="font-semibold mb-2">Activities:</h4>
+                              <ul className="list-disc list-inside text-sm">
+                                {event.activities.map((activity, index) => (
+                                  <li key={index}>{activity}</li>
+                                ))}
+                              </ul>
                             </div>
-                            <div className="flex items-center">
-                              <Info className="mr-2 h-4 w-4 text-blue-500" />
-                              {event.ageGroup}
+                            <div className="text-sm">
+                              <strong>Contact:</strong> {event.contact}
                             </div>
                           </div>
-                          <div>
-                            <h4 className="font-semibold mb-2">Activities:</h4>
-                            <ul className="list-disc list-inside text-sm">
-                              {event.activities.map((activity, index) => (
-                                <li key={index}>{activity}</li>
-                              ))}
-                            </ul>
-                          </div>
-                          <div className="text-sm">
-                            <strong>Contact:</strong> {event.contact}
-                          </div>
-                        </div>
-                      </DialogContent>
-                    </Dialog>
-                  </CardContent>
-                </Card>
+                        </DialogContent>
+                      </Dialog>
+                    </CardContent>
+                  </Card>
+                </motion.div>
               ))}
             </div>
-            <div className="mt-8 flex justify-center space-x-2">
-              <Button
-                onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-                disabled={currentPage === 1}>
-                Previous
-              </Button>
-              <span className="py-2">
-                Page {currentPage} of {totalPages}
-              </span>
-              <Button
-                onClick={() =>
-                  setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-                }
-                disabled={currentPage === totalPages}>
-                Next
-              </Button>
-            </div>
-          </motion.div>
-        ) : (
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.5 }}
-            className="flex flex-col md:flex-row gap-8">
-            <Card className="md:w-1/2">
-              <CardHeader>
-                <CardTitle>Event Calendar</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CalendarComponent
-                  mode="single"
-                  selected={selectedDate}
-                  onSelect={setSelectedDate}
-                  className="rounded-md border"
-                />
-              </CardContent>
-            </Card>
-            <Card className="md:w-1/2">
-              <CardHeader>
-                <CardTitle>
-                  Events on {selectedDate?.toLocaleDateString()}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                {filteredEvents.length > 0 ? (
-                  <ul className="space-y-4">
-                    {filteredEvents.map((event) => (
-                      <li
-                        key={event.id}
-                        className="border-b pb-4 last:border-b-0">
-                        <div className="flex justify-between items-start">
-                          <h3 className="font-semibold">{event.title}</h3>
-                          {getEventStatus(event.date)}
-                        </div>
-                        <p className="text-sm text-gray-600">{event.time}</p>
-                        <p className="text-sm text-gray-600">
-                          {event.location}
-                        </p>
-                        <Dialog>
-                          <DialogTrigger asChild>
-                            <Button variant="outline" className="mt-2">
-                              View Details
-                            </Button>
-                          </DialogTrigger>
-                          <DialogContent className="sm:max-w-[425px]">
-                            <DialogHeader>
-                              <DialogTitle>{event.title}</DialogTitle>
-                              <DialogDescription>
-                                {event.date.toLocaleDateString()}{" "}
-                                {event.endDate &&
-                                  `- ${event.endDate.toLocaleDateString()}`}
-                              </DialogDescription>
-                            </DialogHeader>
-                            <div className="grid gap-4 py-4">
-                              <div className="flex items-center gap-4">
-                                <Image
-                                  src={event.image}
-                                  alt={event.title}
-                                  width={150}
-                                  height={150}
-                                  className="rounded-md object-cover"
-                                />
-                                <p className="text-sm text-gray-700">
-                                  {event.description}
-                                </p>
-                              </div>
-                              <div className="grid grid-cols-2 gap-4 text-sm">
-                                <div className="flex items-center">
-                                  <Clock className="mr-2 h-4 w-4 text-blue-500" />
-                                  {event.time}
-                                </div>
-                                <div className="flex items-center">
-                                  <MapPin className="mr-2 h-4 w-4 text-blue-500" />
-                                  {event.location}
-                                </div>
-                                <div className="flex items-center">
-                                  <Users className="mr-2 h-4 w-4 text-blue-500" />
-                                  Capacity: {event.capacity}
-                                </div>
-                                <div className="flex items-center">
-                                  <Info className="mr-2 h-4 w-4 text-blue-500" />
-                                  {event.ageGroup}
-                                </div>
-                              </div>
-                              <div>
-                                <h4 className="font-semibold mb-2">
-                                  Activities:
-                                </h4>
-                                <ul className="list-disc list-inside text-sm">
-                                  {event.activities.map((activity, index) => (
-                                    <li key={index}>{activity}</li>
-                                  ))}
-                                </ul>
-                              </div>
-                              <div className="text-sm">
-                                <strong>Contact:</strong> {event.contact}
-                              </div>
+          ) : (
+            <div className="flex flex-col md:flex-row gap-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="md:w-1/2">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Event Calendar</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CalendarComponent
+                      mode="single"
+                      selected={selectedDate}
+                      onSelect={setSelectedDate}
+                      className="rounded-md border"
+                    />
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="md:w-1/2">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>
+                      Events on {selectedDate?.toLocaleDateString()}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    {filteredEvents.length > 0 ? (
+                      <ul className="space-y-4">
+                        {filteredEvents.map((event) => (
+                          <li
+                            key={event.id}
+                            className="border-b pb-4 last:border-b-0">
+                            <div className="flex justify-between items-start">
+                              <h3 className="font-semibold">{event.title}</h3>
+                              {getEventStatus(event.date)}
                             </div>
-                          </DialogContent>
-                        </Dialog>
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p>No events on this date.</p>
-                )}
-              </CardContent>
-            </Card>
-          </motion.div>
-        )}
-      </motion.div>
+                            <p className="text-sm text-gray-600">{event.time}</p>
+                            <p className="text-sm text-gray-600">
+                              {event.location}
+                            </p>
+                            <Dialog>
+                              <DialogTrigger asChild>
+                                <Button variant="outline" className="mt-2">
+                                  View Details
+                                </Button>
+                              </DialogTrigger>
+                              <DialogContent className="sm:max-w-[425px]">
+                                <DialogHeader>
+                                  <DialogTitle>{event.title}</DialogTitle>
+                                  <DialogDescription>
+                                    {event.date.toLocaleDateString()}{" "}
+                                    {event.endDate &&
+                                      `- ${event.endDate.toLocaleDateString()}`}
+                                  </DialogDescription>
+                                </DialogHeader>
+                                <div className="grid gap-4 py-4">
+                                  <div className="flex items-center gap-4">
+                                    <Image
+                                      src={event.image}
+                                      alt={event.title}
+                                      width={150}
+                                      height={150}
+                                      className="rounded-md object-cover"
+                                    />
+                                    <p className="text-sm text-gray-700">
+                                      {event.description}
+                                    </p>
+                                  </div>
+                                  <div className="grid grid-cols-2 gap-4 text-sm">
+                                    <div className="flex items-center">
+                                      <Clock className="mr-2 h-4 w-4 text-blue-500" />
+                                      {event.time}
+                                    </div>
+                                    <div className="flex items-center">
+                                      <MapPin className="mr-2 h-4 w-4 text-blue-500" />
+                                      {event.location}
+                                    </div>
+                                    <div className="flex items-center">
+                                      <Users className="mr-2 h-4 w-4 text-blue-500" />
+                                      Capacity: {event.capacity}
+                                    </div>
+                                    <div className="flex items-center">
+                                      <Info className="mr-2 h-4 w-4 text-blue-500" />
+                                      {event.ageGroup}
+                                    </div>
+                                  </div>
+                                  <div>
+                                    <h4 className="font-semibold mb-2">
+                                      Activities:
+                                    </h4>
+                                    <ul className="list-disc list-inside text-sm">
+                                      {event.activities.map((activity, index) => (
+                                        <li key={index}>{activity}</li>
+                                      ))}
+                                    </ul>
+                                  </div>
+                                  <div className="text-sm">
+                                    <strong>Contact:</strong> {event.contact}
+                                  </div>
+                                </div>
+                              </DialogContent>
+                            </Dialog>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p>No events on this date.</p>
+                    )}
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Add pagination controls at the bottom */}
+      {view === "list" && totalPages > 1 && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="flex justify-center gap-2 mt-8">
+          <Button
+            variant="outline"
+            onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+            disabled={currentPage === 1}>
+            Previous
+          </Button>
+          <span className="flex items-center px-4">
+            Page {currentPage} of {totalPages}
+          </span>
+          <Button
+            variant="outline"
+            onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+            disabled={currentPage === totalPages}>
+            Next
+          </Button>
+        </motion.div>
+      )}
     </div>
   );
 }

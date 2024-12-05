@@ -115,26 +115,32 @@ export default function WatchComponent() {
       <div className="relative bg-gray-900 -mt-[104px] md:-mt-[112px]">
         <div className="absolute inset-0">
           <Image
-            src={watchConfig.header.backgroundImage || "/assets/icons/new-placeholder.svg"}
-            alt=""
+            src={watchConfig.header.backgroundImage}
+            alt="Watch"
             fill
             className="object-cover object-center opacity-60"
             priority
-            quality={100}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-[#1a1a1a]/50 to-transparent" />
         </div>
 
-        {/* Hero Content */}
         <div className="relative min-h-[60vh] flex items-center">
           <div className="container mx-auto px-4 pt-[104px] md:pt-[112px]">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white">
-                Watch Live & On-Demand
-              </h1>
-              <p className="mt-6 text-xl sm:text-2xl text-white/90 font-medium">
-                Join us live or watch our previous services and messages
-              </p>
+            <div className="max-w-4xl mx-auto text-center space-y-4 md:space-y-6">
+              <motion.h1
+                className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}>
+                {watchConfig.header.title}
+              </motion.h1>
+              <motion.p
+                className="text-xl sm:text-2xl text-white/90 font-medium"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}>
+                {watchConfig.header.description}
+              </motion.p>
             </div>
           </div>
         </div>
@@ -144,11 +150,11 @@ export default function WatchComponent() {
       <section className="container mx-auto px-4 py-16">
         {livestreamStatus.isLive ? (
           <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.5 }}
-            className="mb-12"
-          >
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="mb-12">
             <Card className="overflow-hidden">
               <CardHeader className="bg-gray-50">
                 <LivestreamBadge />
@@ -188,16 +194,27 @@ export default function WatchComponent() {
           <>
             {/* Countdown Timer */}
             {livestreamStatus.nextStreamDate && (
-              <div className="mb-12">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="mb-12">
                 <CountdownTimer
                   targetDate={livestreamStatus.nextStreamDate}
                   streamTitle={livestreamStatus.nextStreamTitle || "Upcoming Service"}
                 />
-              </div>
+              </motion.div>
             )}
 
             {/* Sermons Section */}
-            <SermonsSection series={sermonSeries} sermons={sermons} />
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}>
+              <SermonsSection series={sermonSeries} sermons={sermons} />
+            </motion.div>
           </>
         )}
       </section>

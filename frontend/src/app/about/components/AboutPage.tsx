@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import PageLayout from "@/components/layouts/PageLayout";
-import {  components } from "@/configs/DesignSystem";
+import { components } from "@/configs/DesignSystem";
 import { HandHeartIcon, UsersIcon, BookOpenIcon } from "lucide-react";
 
 // This can later be moved to a config file or fetched from API
@@ -73,7 +73,10 @@ export default function AboutPage() {
       <div className="relative bg-gray-900 -mt-[104px] md:-mt-[112px]">
         <div className="absolute inset-0">
           <Image
-            src={aboutContent.hero.backgroundImage || "/assets/icons/new-placeholder.svg"}
+            src={
+              aboutContent.hero.backgroundImage ||
+              "/assets/icons/new-placeholder.svg"
+            }
             alt=""
             fill
             className="object-cover object-center opacity-60"
@@ -115,7 +118,8 @@ export default function AboutPage() {
                 {aboutContent.story.content}
               </p>
               <Link href={aboutContent.story.button.href}>
-                <button className={`${components.buttons.primary} w-full md:w-auto`}>
+                <button
+                  className={`${components.buttons.primary} w-full md:w-auto`}>
                   {aboutContent.story.button.text}
                 </button>
               </Link>
@@ -240,4 +244,4 @@ export default function AboutPage() {
       </section>
     </PageLayout>
   );
-} 
+}
