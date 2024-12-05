@@ -108,6 +108,8 @@ export default function Header() {
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="p-2"
+                  aria-label="Close menu"
+                  title="Close menu"
                 >
                   <X className="text-gray-600" />
                 </button>

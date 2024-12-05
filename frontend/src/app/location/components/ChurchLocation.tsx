@@ -27,21 +27,27 @@ export default function ChurchLocation() {
             fill
             className="object-cover object-center opacity-60"
             priority
-            quality={100}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-[#1a1a1a]/50 to-transparent" />
         </div>
 
-        {/* Hero Content */}
         <div className="relative min-h-[60vh] flex items-center">
           <div className="container mx-auto px-4 pt-[104px] md:pt-[112px]">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white">
+            <div className="max-w-4xl mx-auto text-center space-y-4 md:space-y-6">
+              <motion.h1
+                className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}>
                 {locationConfig.title}
-              </h1>
-              <p className="mt-6 text-xl sm:text-2xl text-white/90 font-medium">
+              </motion.h1>
+              <motion.p
+                className="text-xl sm:text-2xl text-white/90 font-medium"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}>
                 {locationConfig.subtitle}
-              </p>
+              </motion.p>
             </div>
           </div>
         </div>
@@ -52,8 +58,9 @@ export default function ChurchLocation() {
         <div className="grid md:grid-cols-2 gap-8 items-start">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}>
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}>
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center text-2xl font-semibold text-gray-800">
@@ -89,8 +96,9 @@ export default function ChurchLocation() {
           <div className="space-y-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}>
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}>
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center text-2xl font-semibold text-gray-800">
@@ -116,8 +124,9 @@ export default function ChurchLocation() {
             {locationConfig.whatToExpect.enabled && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}>
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                viewport={{ once: true }}>
                 <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center text-2xl font-semibold text-gray-800">
