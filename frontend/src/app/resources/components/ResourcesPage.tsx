@@ -42,20 +42,6 @@ export default function ResourcesPage() {
                 transition={{ duration: 0.5 }}>
                 {resourcesConfig.hero.title}
               </motion.h1>
-              <motion.p
-                className="text-xl sm:text-2xl text-white/90 font-medium"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}>
-                {resourcesConfig.hero.subtitle}
-              </motion.p>
-              <motion.p
-                className="text-base text-white/80 max-w-2xl mx-auto"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}>
-                {resourcesConfig.hero.description}
-              </motion.p>
             </div>
           </div>
         </div>
