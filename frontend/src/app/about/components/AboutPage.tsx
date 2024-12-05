@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import PageLayout from "@/components/layouts/PageLayout";
 import { components } from "@/configs/DesignSystem";
 import { HandHeartIcon, UsersIcon, BookOpenIcon } from "lucide-react";
 
@@ -12,13 +11,13 @@ const aboutContent = {
   hero: {
     title: "About Us",
     subtitle: "A community united in faith, service, and love",
-    backgroundImage: "/assets/placeholder.svg",
+    backgroundImage: "/assets/icons/new-placeholder.svg",
   },
   story: {
     title: "Our Story",
     content:
       "Founded on the principles of love, compassion, and community service, Revival Center has been a beacon of hope in our community. We believe in creating an inclusive environment where everyone can experience God's love and grow in their faith journey.",
-    image: "/assets/placeholder.svg",
+    image: "/assets/icons/new-placeholder.svg",
     button: {
       text: "Learn More",
       href: "/about/history",
@@ -60,7 +59,7 @@ const aboutContent = {
       {
         name: "Pastor John Doe",
         role: "Senior Pastor",
-        image: "/assets/placeholder.svg",
+        image: "/assets/icons/new-placeholder.svg",
       },
     ],
   },
@@ -68,15 +67,12 @@ const aboutContent = {
 
 export default function AboutPage() {
   return (
-    <PageLayout>
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <div className="relative bg-gray-900 -mt-[104px] md:-mt-[112px]">
         <div className="absolute inset-0">
           <Image
-            src={
-              aboutContent.hero.backgroundImage ||
-              "/assets/icons/new-placeholder.svg"
-            }
+            src={aboutContent.hero.backgroundImage || "/assets/icons/new-placeholder.svg"}
             alt=""
             fill
             className="object-cover object-center opacity-60"
@@ -86,16 +82,16 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-[#1a1a1a]/50 to-transparent" />
         </div>
 
-        {/* Hero Content */}
         <div className="relative min-h-[60vh] flex items-center">
           <div className="container mx-auto px-4 pt-[104px] md:pt-[112px]">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white">
+            <div className="max-w-4xl mx-auto text-center space-y-4 md:space-y-6">
+              <motion.h1
+                className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}>
                 {aboutContent.hero.title}
-              </h1>
-              <p className="mt-6 text-xl sm:text-2xl text-white/90 font-medium">
-                {aboutContent.hero.subtitle}
-              </p>
+              </motion.h1>
             </div>
           </div>
         </div>
@@ -242,6 +238,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-    </PageLayout>
+    </div>
   );
 }

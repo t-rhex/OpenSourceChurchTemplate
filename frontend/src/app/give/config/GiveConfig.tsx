@@ -19,7 +19,6 @@ export interface PaymentOption {
 export const giveConfig = {
   header: {
     title: "Support Our Ministry",
-    description: "Your generosity helps us spread the message of God's love and make a difference in people's lives.",
     backgroundImage: "/assets/icons/new-placeholder.svg",
   },
   scripture: {

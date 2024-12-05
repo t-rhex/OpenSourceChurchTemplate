@@ -3,8 +3,6 @@ import { HandHeartIcon, UsersIcon, HandshakeIcon } from "lucide-react";
 export const getInvolvedContent = {
   hero: {
     title: "Get Involved",
-    subtitle: "Join us in making a difference in our community",
-    description: "Find your place to serve, connect, and grow in faith",
     image: "/assets/icons/new-placeholder.svg",
   },
   opportunities: [

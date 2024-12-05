@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen bg-[#1a1a1a] -mt-[104px] md:-mt-[112px]">
+    <section className="relative min-h-screen bg-[#1a1a1a] -mt-[120px] sm:-mt-[140px]">
       {/* Full width hero image with overlay */}
       <div className="absolute inset-0">
         <Image
@@ -22,7 +22,7 @@ export default function HeroSection() {
 
       {/* Hero Content */}
       <div className="relative min-h-screen flex items-end">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pb-20 pt-[104px] md:pt-[112px]">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pb-20 pt-[120px] sm:pt-[140px]">
           <div className="max-w-4xl space-y-6">
             <motion.h1 
               className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white"

@@ -134,13 +134,7 @@ export default function WatchComponent() {
                 transition={{ duration: 0.5 }}>
                 {watchConfig.header.title}
               </motion.h1>
-              <motion.p
-                className="text-xl sm:text-2xl text-white/90 font-medium"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}>
-                {watchConfig.header.description}
-              </motion.p>
+
             </div>
           </div>
         </div>

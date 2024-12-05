@@ -30,7 +30,6 @@ export interface LivestreamStatus {
 export const watchConfig = {
   header: {
     title: "Watch Live & On-Demand",
-    description: "Join us live or watch our previous services and messages",
     backgroundImage: "/assets/icons/new-placeholder.svg",
   },
   livestream: {

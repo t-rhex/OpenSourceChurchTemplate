@@ -15,7 +15,7 @@ export default function PageLayout({
 }: PageLayoutProps) {
   if (!animate) {
     return (
-      <div className={`min-h-screen ${className}`}>
+      <div className={`min-h-screen pt-[120px] sm:pt-[140px] ${className}`}>
         {children}
       </div>
     );
@@ -27,7 +27,7 @@ export default function PageLayout({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      className={`min-h-screen ${className}`}
+      className={`min-h-screen pt-[120px] sm:pt-[140px] ${className}`}
     >
       {children}
     </motion.div>
