@@ -1,0 +1,11 @@
+<svg width="300" height="100" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Chinese Text -->
+  <text x="150" y="40" font-size="36" fill="black" font-family="Arial, sans-serif" text-anchor="middle">
+    真光浸信會
+  </text>
+  
+  <!-- English Text -->
+  <text x="150" y="80" font-size="20" fill="black" font-family="Arial, sans-serif" text-anchor="middle">
+    SFTLBC
+  </text>
+</svg>

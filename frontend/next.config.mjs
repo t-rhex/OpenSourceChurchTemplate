@@ -17,6 +17,7 @@ const nextConfig = {
             },
         ],
     },
+
     webpack: (config, { isServer }) => {
         if (!isServer) {
             config.resolve.alias = {
@@ -32,5 +33,6 @@ const nextConfig = {
         return config;
     },
 };
+
 
 export default nextConfig;

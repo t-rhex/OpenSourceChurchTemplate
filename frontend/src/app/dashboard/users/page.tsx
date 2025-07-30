@@ -6,7 +6,7 @@ import CreateUserForm from "./create-user-form";
 import { prisma } from "@/lib/prisma";
 import { formatDistance } from "date-fns";
 
-export default async function UsersPage() {
+export default function UsersPage() {
   const session = await getServerSession(authOptions);
 
   if (!session || session.user?.role !== "ADMIN") {
@@ -29,7 +29,9 @@ export default async function UsersPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h2 className="text-3xl font-bold tracking-tight text-gray-900">User Management</h2>
+        <h2 className="text-3xl font-bold tracking-tight text-gray-900">
+          User Management
+        </h2>
         <p className="mt-2 text-sm text-gray-600">
           Create and manage user accounts
         </p>
@@ -38,7 +40,9 @@ export default async function UsersPage() {
       <div className="grid gap-8 md:grid-cols-2">
         <Card className="border-gray-200 bg-white shadow-sm">
           <CardHeader>
-            <CardTitle className="text-xl font-semibold text-gray-900">Create New User</CardTitle>
+            <CardTitle className="text-xl font-semibold text-gray-900">
+              Create New User
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <CreateUserForm />
@@ -47,7 +51,9 @@ export default async function UsersPage() {
 
         <Card className="border-gray-200 bg-white shadow-sm">
           <CardHeader>
-            <CardTitle className="text-xl font-semibold text-gray-900">Existing Users</CardTitle>
+            <CardTitle className="text-xl font-semibold text-gray-900">
+              Existing Users
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
@@ -57,10 +63,17 @@ export default async function UsersPage() {
                   className="flex items-center justify-between rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition-colors hover:bg-gray-50"
                 >
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-medium text-gray-900">{user.name}</p>
-                    <p className="truncate text-sm text-gray-500">{user.email}</p>
+                    <p className="truncate text-sm font-medium text-gray-900">
+                      {user.name}
+                    </p>
+                    <p className="truncate text-sm text-gray-500">
+                      {user.email}
+                    </p>
                     <p className="mt-1 text-xs text-gray-400">
-                      Created {formatDistance(new Date(user.createdAt), new Date(), { addSuffix: true })}
+                      Created{" "}
+                      {formatDistance(new Date(user.createdAt), new Date(), {
+                        addSuffix: true,
+                      })}
                     </p>
                   </div>
                   <span className="ml-4 inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">
